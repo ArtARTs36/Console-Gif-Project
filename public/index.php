@@ -3,6 +3,7 @@
 use App\Pages\Index;
 use App\Pages\Submit;
 
+require_once 'server_ini.php';
 require_once __DIR__ . '/../vendor/autoload.php';
 
 $result = '';

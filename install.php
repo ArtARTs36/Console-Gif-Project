@@ -17,7 +17,7 @@ function composer()
         unlink('composer-setup.php');
     }
 
-    shell_exec('composer install');
+    shell_exec('composer7.3 install');
 }
 
 composer();
