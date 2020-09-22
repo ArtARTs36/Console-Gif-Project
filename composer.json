@@ -1,0 +1,28 @@
+{
+    "name": "artarts36/console-gif-project",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ArtARTs36",
+            "email": "temicska99@mail.ru"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/ArtARTs36/ConsoleGif"
+        }
+    ],
+    "require": {
+        "artarts36/console-gif": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "files": [
+            "app\\Support\\helpers.php"
+        ]
+    }
+}
