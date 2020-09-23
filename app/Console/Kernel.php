@@ -3,12 +3,14 @@
 namespace App\Console;
 
 use App\Console\Command\ClearCache;
+use App\Console\Command\PrintStat;
 use App\Contracts\Command;
 
 class Kernel
 {
     protected $commands = [
         ClearCache::class,
+        PrintStat::class,
     ];
 
     public function handle()
