@@ -19,7 +19,7 @@ class Submit extends Page
         $file = time() . '.gif';
 
         Console::bySize((int) post()->get('width', 450), (int) post()->get('height', 450))
-            ->addLines(post()->get('strings', ['git clone https://github.com/ArtARTs36/GitHandler']))
+            ->addLines(post()->get('strings', ['']))
             ->setUser(post()->get('user') ?? '')
             ->save(__DIR__ . '/../../var/anim/'. $file);
 
