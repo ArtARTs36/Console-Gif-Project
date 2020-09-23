@@ -17,11 +17,11 @@ abstract class Method
     }
 
     public function get($key, $default = null)
-    {;
+    {
         return ! empty($this->variables[$key]) &&
             (! is_array($this->variables[$key]) ||
                 is_array($this->variables[$key]) &&
-                ! empty(end($this->variables[$key]))
+                ! empty(array_filter($this->variables[$key]))
             ) ?
             $this->variables[$key] :
             $default;
