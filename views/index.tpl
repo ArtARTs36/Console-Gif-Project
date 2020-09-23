@@ -62,8 +62,10 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-secondary">Submit</button>
+            <button type="submit" class="btn btn-success">Submit</button>
             <button type="button" class="btn btn-info" onclick="addString()">Add String</button>
+            <button type="button" class="btn btn-primary" onclick="repeatLastString()">Repeat Last String</button>
+            <button type="button" class="btn btn-danger" onclick="deleteLastString()">Delete Last String</button>
 
         </form>
     </div>
@@ -71,21 +73,43 @@
 
 {{ include('layout/scripts') }}
 <script>
-    let strings = 1;
-
-    function addString()
+    function repeatLastString()
     {
-        $('#submit-form-strings').append('            <div id="submit-form-strings">\n' +
+        addString($('#submit-form-strings div:eq(' + getLastStringIndex() +') input').val());
+    }
+
+    function deleteLastString()
+    {
+        $('#submit-form-strings div:eq(' + getLastStringIndex() +')').remove();
+    }
+
+    function addString(value)
+    {
+        value = value ? value : '';
+
+        let id = getStringsCount() + 1;
+
+        $('#submit-form-strings').append('' +
             '                <div class="form-group">\n' +
-            '                    <label for="submit-form-user">String '+ ++strings +'</label>\n' +
+            '                    <label for="submit-form-user">String '+ id +'</label>\n' +
             '                    <input type="text"\n' +
             '                           class="form-control"\n' +
             '                           id="submit-form-user"\n' +
             '                           placeholder="git clone https://github.com/ArtARTs36/GitHandler"\n' +
-            '                           name="strings[' + strings + ']"\n' +
+            '                           name="strings[' + id + ']"\n' +
+            '                           value="'+ value +'"              ' +
             '                    />\n' +
-            '                </div>\n' +
-            '            </div>');
+            '                </div>\n');
+    }
+
+    function getStringsCount()
+    {
+        return $('#submit-form-strings input').length;
+    }
+
+    function getLastStringIndex()
+    {
+        return getStringsCount() - 1;
     }
 </script>
 
