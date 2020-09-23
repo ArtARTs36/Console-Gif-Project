@@ -42,7 +42,7 @@
             </div>
 
             <div class="form-group">
-                <label for="submit-form-user">User</label>
+                <label for="submit-form-user">User (static)</label>
                 <input type="text"
                        class="form-control"
                        id="submit-form-user"
