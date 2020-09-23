@@ -20,9 +20,20 @@ class Submit extends Page
 
         Console::bySize((int) post()->get('width', 450), (int) post()->get('height', 450))
             ->addLines(post()->get('strings', [' ']))
-            ->setUser(post()->get('user') ?? '')
+            ->setUser($this->user())
             ->save(__DIR__ . '/../../var/anim/'. $file);
 
         return $file;
+    }
+
+    private function user(): string
+    {
+        $user = post()->get('user');
+
+        if (empty($user)) {
+            return '';
+        }
+
+        return trim($user) . ' ';
     }
 }
