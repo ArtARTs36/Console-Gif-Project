@@ -19,6 +19,8 @@ class ClearCache extends Command
         foreach ($files as $file) {
             unlink($this->path($file));
         }
+
+        $this->printColored(static::COLOR_GREEN, 'Cache cleared!');
     }
 
     private function path(string $file): string

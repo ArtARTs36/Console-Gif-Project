@@ -4,9 +4,14 @@ namespace App\Contracts;
 
 abstract class Command
 {
-    protected const COLOR_GREEN = '32';
+    protected const COLOR_BRIGHT_WHITE = '30';
     protected const COLOR_RED = '31';
+    protected const COLOR_GREEN = '32';
+    protected const COLOR_ORANGE = '33';
     protected const COLOR_BLUE = '34';
+    protected const COLOR_VIOLETT = '35';
+    protected const COLOR_BLAU = '36';
+    protected const COLOR_GRAY = '37';
 
     abstract public static function getSignature(): string;
 
