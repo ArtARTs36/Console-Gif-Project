@@ -12,17 +12,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ArtARTs36/ConsoleGif.git",
-                "reference": "4db6dbf7a0e8dc7afebc24f22aa7d9dd3abcabb7"
+                "reference": "9bd0059f34f77d9616f21785989a49ef7ea50e16"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ArtARTs36/ConsoleGif/zipball/4db6dbf7a0e8dc7afebc24f22aa7d9dd3abcabb7",
-                "reference": "4db6dbf7a0e8dc7afebc24f22aa7d9dd3abcabb7",
+                "url": "https://api.github.com/repos/ArtARTs36/ConsoleGif/zipball/9bd0059f34f77d9616f21785989a49ef7ea50e16",
+                "reference": "9bd0059f34f77d9616f21785989a49ef7ea50e16",
                 "shasum": ""
             },
             "require": {
                 "artarts36/str": "^1.0",
                 "ext-gd": "*",
+                "ext-iconv": "*",
+                "ext-mbstring": "*",
                 "sybio/gif-creator": "^1.0"
             },
             "type": "library",
@@ -44,20 +46,20 @@
                 "source": "https://github.com/ArtARTs36/ConsoleGif/tree/master",
                 "issues": "https://github.com/ArtARTs36/ConsoleGif/issues"
             },
-            "time": "2020-09-22T10:22:44+00:00"
+            "time": "2020-09-23T00:31:15+00:00"
         },
         {
             "name": "artarts36/str",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ArtARTs36/str.git",
-                "reference": "047de03a2b65ba56ac4b553d6d835a1684f8409f"
+                "reference": "691ccb338fce0d31fcb45bfa8e688fd0a0a02514"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ArtARTs36/str/zipball/047de03a2b65ba56ac4b553d6d835a1684f8409f",
-                "reference": "047de03a2b65ba56ac4b553d6d835a1684f8409f",
+                "url": "https://api.github.com/repos/ArtARTs36/str/zipball/691ccb338fce0d31fcb45bfa8e688fd0a0a02514",
+                "reference": "691ccb338fce0d31fcb45bfa8e688fd0a0a02514",
                 "shasum": ""
             },
             "require": {
@@ -84,7 +86,7 @@
                 }
             ],
             "description": "Str",
-            "time": "2020-08-23T13:30:47+00:00"
+            "time": "2020-09-23T00:22:58+00:00"
         },
         {
             "name": "sybio/gif-creator",
