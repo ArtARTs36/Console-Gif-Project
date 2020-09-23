@@ -40,13 +40,25 @@ class Image
      */
     public static function getByLimit(int $limit): array
     {
+        return static::wrap(static::getPathsByLimit($limit));
+    }
+
+    public static function getPathsByLimit(int $limit): array
+    {
         $all = static::getAllPaths();
 
         arsort($all);
 
-        $all = array_slice($all, 0, $limit);
+        return array_slice($all, 0, $limit);
+    }
 
-        return static::wrap($all);
+    public static function getCacheByLimit(int $limit): array
+    {
+        $paths = cache('last_images', function () use ($limit) {
+            return static::getPathsByLimit($limit);
+        });
+
+        return static::wrap($paths);
     }
 
     public function getPublicPath(): string

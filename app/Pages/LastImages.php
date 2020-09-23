@@ -10,7 +10,7 @@ class LastImages extends Page
     public function process(): string
     {
         return view('last_images', [
-            'images' => Image::getByLimit(9),
+            'images' => Image::getCacheByLimit(9),
         ]);
     }
 }

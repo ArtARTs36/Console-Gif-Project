@@ -2,6 +2,7 @@
 
 use App\Http\Method;
 use App\Http\Post;
+use App\Support\Cache;
 use App\Support\Viewer;
 
 function method(string $class, $variables): Method
@@ -43,6 +44,17 @@ function view(string $template, array $attributes = []): string
 function view_path(string $template): string
 {
     return __DIR__ . '/../../views/' . $template . '.tpl';
+}
+
+function cache(string $key, \Closure $default, int $ttl = 24 * 3600)
+{
+    static $instance = null;
+
+    if (null === $instance) {
+        $instance = new Cache(__DIR__  . '/../../var/cache');
+    }
+
+    return $instance->remember($key, $default, $ttl);
 }
 
 function dd(...$vars)

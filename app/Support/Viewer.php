@@ -8,7 +8,7 @@ class Viewer
     {
         $template = file_get_contents(view_path($template));
 
-        $template = static::prepareInclude($template);
+        $template = static::prepareInclude($template, $attributes);
 
         if ($attributes) {
             $template = static::preparedArrayableAttributes($template, $attributes);
@@ -47,7 +47,7 @@ class Viewer
         }, array_keys($attributes));
     }
 
-    protected static function prepareInclude(string $content): string
+    protected static function prepareInclude(string $content, array $attributes): string
     {
         $matches = [];
 
@@ -61,7 +61,7 @@ class Viewer
 
                 $file = $matches[1][$index];
 
-                $content = str_replace($code, view($file), $content);
+                $content = str_replace($code, static::render($file, $attributes), $content);
             }
         }
 
