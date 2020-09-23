@@ -2,6 +2,7 @@
 
 use App\Http\Method;
 use App\Http\Post;
+use App\Support\Viewer;
 
 function method(string $class, $variables): Method
 {
@@ -36,33 +37,7 @@ function is_current_uri(string $search): bool
 
 function view(string $template, array $attributes = []): string
 {
-    $template = file_get_contents(view_path($template));
-
-    // Find included
-
-    $matches = [];
-
-    preg_match_all("/{{ include\('(.*)'\) }}/mi", $template, $matches);
-
-    if (count($matches) === 2) {
-        foreach ($matches[0] as $index => $code) {
-            if (empty($matches[1][$index])) {
-                continue;
-            }
-
-            $file = $matches[1][$index];
-
-            $template = str_replace($code, view($file), $template);
-        }
-    }
-
-    //
-
-    $keys = array_map(function (string $attribute) {
-        return "{{ $attribute }}";
-    }, array_keys($attributes));
-
-    return str_replace($keys, array_values($attributes), $template);
+    return Viewer::render($template, $attributes);
 }
 
 function view_path(string $template): string

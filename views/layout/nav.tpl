@@ -7,8 +7,13 @@
     <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
+                <a class="nav-link" href="/last">Last Images</a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link" href="https://b0o.ru" target="_blank">Cut Link</a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="http://ukrainsky.su" target="_blank">Author</a>
             </li>
