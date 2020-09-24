@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "70f7bd5412f2e9383e8d05deebc8f285",
+    "content-hash": "b3e1b90a993d38a1a4f32b85997b13fa",
     "packages": [
         {
             "name": "artarts36/console-gif",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/ArtARTs36/ConsoleGif.git",
-                "reference": "9bd0059f34f77d9616f21785989a49ef7ea50e16"
+                "url": "git@github.com:ArtARTs36/ConsoleGif.git",
+                "reference": "1d41dfdbeda7fa7bc51aa2bacc58304905989793"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ArtARTs36/ConsoleGif/zipball/9bd0059f34f77d9616f21785989a49ef7ea50e16",
-                "reference": "9bd0059f34f77d9616f21785989a49ef7ea50e16",
+                "url": "https://api.github.com/repos/ArtARTs36/ConsoleGif/zipball/1d41dfdbeda7fa7bc51aa2bacc58304905989793",
+                "reference": "1d41dfdbeda7fa7bc51aa2bacc58304905989793",
                 "shasum": ""
             },
             "require": {
@@ -46,7 +46,7 @@
                 "source": "https://github.com/ArtARTs36/ConsoleGif/tree/master",
                 "issues": "https://github.com/ArtARTs36/ConsoleGif/issues"
             },
-            "time": "2020-09-23T00:31:15+00:00"
+            "time": "2020-09-24T17:38:58+00:00"
         },
         {
             "name": "artarts36/str",
@@ -142,6 +142,8 @@
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "ext-json": "*"
+    },
     "platform-dev": []
 }
