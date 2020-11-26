@@ -18,8 +18,8 @@ class Submit extends Page
     {
         $file = time() . '.gif';
 
-        Console::bySize((int) post()->get('width', 450), (int) post()->get('height', 450))
-            ->addLines(post()->get('strings', [' ']))
+        Console::bySize(...$this->getWidthAndHeight())
+            ->addLines($this->getStrings())
             ->setUser($this->user())
             ->save(__DIR__ . '/../../var/anim/'. $file);
 
@@ -35,5 +35,32 @@ class Submit extends Page
         }
 
         return trim($user) . ' ';
+    }
+
+    private function getStrings(): array
+    {
+        $values = post()->get('strings', null);
+
+        if (empty($values)) {
+            $values[] = 'Hello, World! Hello, World! Hello, World!';
+        }
+
+        return $values;
+    }
+
+    private function getWidthAndHeight(): array
+    {
+        $default = 450;
+
+        $prepare = function ($value) use ($default) {
+            $intValue = (int) $value;
+
+            return $intValue === 0 ? $default : $intValue;
+        };
+
+        return [
+            $prepare(post()->get('width', 450)),
+            $prepare(post()->get('height', 450)),
+        ];
     }
 }
