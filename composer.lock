@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a854d052a8cab6c38a5cc9f79140f6bb",
+    "content-hash": "51fb08b40e3ecedc70fc098666609898",
     "packages": [
         {
             "name": "artarts36/console-gif",
@@ -47,6 +47,57 @@
                 "issues": "https://github.com/ArtARTs36/ConsoleGif/issues"
             },
             "time": "2020-09-24T17:38:58+00:00"
+        },
+        {
+            "name": "artarts36/pushall-sender",
+            "version": "0.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ArtARTs36/PushAllSender.git",
+                "reference": "11e4d1fc92b17600468ee6ce7ed32918d761f75f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ArtARTs36/PushAllSender/zipball/11e4d1fc92b17600468ee6ce7ed32918d761f75f",
+                "reference": "11e4d1fc92b17600468ee6ce7ed32918d761f75f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0",
+                "squizlabs/php_codesniffer": "3.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ArtARTs36\\PushAllSender\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ArtARTs36",
+                    "email": "temicska99@mail.ru"
+                }
+            ],
+            "description": "Push Sender",
+            "keywords": [
+                "api",
+                "laravel",
+                "mobile",
+                "notification",
+                "php",
+                "push",
+                "pushall.ru",
+                "symfony",
+                "yii"
+            ],
+            "time": "2020-08-18T20:20:52+00:00"
         },
         {
             "name": "artarts36/str",

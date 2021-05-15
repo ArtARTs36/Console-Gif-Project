@@ -9,14 +9,17 @@ class AppExceptionHandler implements ExceptionHandler
 {
     private $viewer;
 
-    public function __construct(Viewer $viewer)
+    private $notifier;
+
+    public function __construct(Viewer $viewer, ExceptionNotifier $notifier)
     {
         $this->viewer = $viewer;
+        $this->notifier = $notifier;
     }
 
     public function handle(\Throwable $exception)
     {
-        // TODO: Implement handle() method.
+        $this->notifier->notify($exception);
     }
 
     public function reportHtml(\Throwable $exception): string
