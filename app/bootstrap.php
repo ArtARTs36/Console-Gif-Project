@@ -11,4 +11,7 @@ Container::getInstance()
     })
     ->after(Router::class, function (Router $router) {
         (new WebRoutes())->applyRoutes($router);
+    })
+    ->bind(\App\Support\Viewer::class, function () {
+        return new \App\Support\Viewer(__DIR__ . '/../views');
     });

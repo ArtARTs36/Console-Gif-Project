@@ -4,24 +4,36 @@ namespace App\Support;
 
 class Viewer
 {
+    protected $dir;
+
+    public function __construct(string $dir)
+    {
+        $this->dir = $dir;
+    }
+
+    public function path(string $template): string
+    {
+        return $this->dir . DIRECTORY_SEPARATOR . $template . '.tpl';
+    }
+
     public function render(string $template, array $attributes = []): string
     {
-        $template = file_get_contents(view_path($template));
+        $template = file_get_contents($this->path($template));
 
-        $template = static::prepareInclude($template, $attributes);
+        $template = $this->prepareInclude($template, $attributes);
 
         if ($attributes) {
-            $template = static::preparedArrayableAttributes($template, $attributes);
+            $template = $this->preparedArrayableAttributes($template, $attributes);
         }
 
         //
 
-        $keys = static::prepareAttributesKeys($attributes);
+        $keys = $this->prepareAttributesKeys($attributes);
 
         return str_replace($keys, array_values($attributes), $template);
     }
 
-    protected static function preparedArrayableAttributes(string $content, array &$attributes): string
+    protected function preparedArrayableAttributes(string $content, array &$attributes): string
     {
         $arrayable = array_filter($attributes, 'is_array');
 
@@ -40,7 +52,7 @@ class Viewer
         return $content;
     }
 
-    protected static function prepareAttributesKeys(array $attributes): array
+    protected function prepareAttributesKeys(array $attributes): array
     {
         return array_map(function (string $attribute) {
             return "{{ $attribute }}";
