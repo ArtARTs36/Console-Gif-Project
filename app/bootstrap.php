@@ -1,11 +1,13 @@
 <?php
 
 use App\Contracts\ImageRepository;
+use App\Exceptions\AppExceptionHandler;
 use App\Http\Routes\WebRoutes;
 use App\Repositories\CacheImageRepository;
 use App\Support\Cache;
 use App\Support\Viewer;
 use Core\DependencyInjection\Container;
+use Core\Exception\Contracts\ExceptionHandler;
 use Core\Http\Router;
 
 Container::getInstance()
@@ -18,4 +20,5 @@ Container::getInstance()
     ->bind(Viewer::class, function () {
         return new Viewer(__DIR__ . '/../views');
     })
-    ->contract(ImageRepository::class, CacheImageRepository::class);
+    ->contract(ImageRepository::class, CacheImageRepository::class)
+    ->contract(ExceptionHandler::class, AppExceptionHandler::class);
