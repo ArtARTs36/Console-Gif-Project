@@ -53,7 +53,7 @@ class Container implements ContainerInterface, \Core\Contracts\Container
     public function make(string $class)
     {
         if (empty($class)) {
-            throw new \LogicException();
+            throw new \InvalidArgumentException('Given empty string');
         }
 
         if (array_key_exists($class, $this->contracts)) {
