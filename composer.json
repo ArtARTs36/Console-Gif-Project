@@ -33,6 +33,11 @@
             "app\\Support\\helpers.php"
         ]
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
     "scripts": {
         "lint": [
             "./vendor/bin/phpcs --standard=PSR2 app core"
