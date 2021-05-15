@@ -41,6 +41,9 @@
     "scripts": {
         "lint": [
             "./vendor/bin/phpcs --standard=PSR2 app core"
+        ],
+        "test": [
+            "./vendor/phpunit/phpunit/phpunit --configuration phpunit.xml"
         ]
     }
 }
