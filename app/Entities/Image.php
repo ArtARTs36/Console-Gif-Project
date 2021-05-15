@@ -11,6 +11,9 @@ class Image
         $this->path = $path;
     }
 
+    /**
+     * @param array<string> $paths
+     */
     public static function wrap(array $paths): array
     {
         return array_map(function (string $path) {
