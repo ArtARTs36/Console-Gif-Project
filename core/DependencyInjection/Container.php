@@ -60,27 +60,7 @@ class Container
             return $this->resolved($reflector->newInstance());
         }
 
-        $resolvedParameters = [];
-
-        foreach ($parameters as $parameter) {
-            $param = $parameter->getType()->__toString();
-
-            if (class_exists($param)) {
-                if ($this->has($param)) {
-                    $resolvedParameters[] = $this->get($param);
-                } else {
-                    $resolvedParameters[] = $this->make($param);
-                }
-            } elseif (! empty($parameter->isDefaultValueAvailable())) {
-                $resolvedParameters[] = $parameter->getDefaultValue();
-            } else {
-                throw new \LogicException(
-                    'Невозможно внедрить параметр: [' . $parameter->getPosition() . ']' . $param . ' в '. $class
-                );
-            }
-        }
-
-        return $this->resolved($reflector->newInstance(...$resolvedParameters));
+        return $this->resolved($reflector->newInstance(...$this->resolveParameters($parameters)));
     }
 
     public function bind(string $abstract, \Closure $make): self
@@ -111,7 +91,9 @@ class Container
 
     public function callMethod(string $class, string $method)
     {
-        return $this->make($class)->$method();
+        $parameters = (new \ReflectionClass($class))->getMethod($method)->getParameters();
+
+        return $this->make($class)->$method(...$this->resolveParameters($parameters));
     }
 
     public function set(string $class, object $object): self
@@ -137,5 +119,33 @@ class Container
         }
 
         return $this->resolvedInstances[$class] = $object;
+    }
+
+    /**
+     * @param array<\ReflectionParameter> $parameters
+     */
+    protected function resolveParameters(array $parameters): array
+    {
+        $resolvedParameters = [];
+
+        foreach ($parameters as $parameter) {
+            $param = $parameter->getType()->__toString();
+
+            if (class_exists($param)) {
+                if ($this->has($param)) {
+                    $resolvedParameters[] = $this->get($param);
+                } else {
+                    $resolvedParameters[] = $this->make($param);
+                }
+            } elseif (! empty($parameter->isDefaultValueAvailable())) {
+                $resolvedParameters[] = $parameter->getDefaultValue();
+            } else {
+                throw new \LogicException(
+                    'Невозможно внедрить параметр: [' . $parameter->getPosition() . ']' . $param . ' в '. $class
+                );
+            }
+        }
+
+        return $resolvedParameters;
     }
 }

@@ -6,7 +6,7 @@ use App\Contracts\Page;
 use App\Entities\Image;
 use App\Repositories\CacheImageRepository;
 
-class LastImages extends Page
+class LastImages
 {
     protected $images;
 

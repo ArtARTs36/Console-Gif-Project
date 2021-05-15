@@ -6,29 +6,22 @@ use App\Contracts\Page;
 use App\Http\Requests\SubmitRequest;
 use ArtARTs36\ConsoleGif\Console;
 
-class Submit extends Page
+class Submit
 {
-    protected $request;
-
-    public function __construct(SubmitRequest $request)
-    {
-        $this->request = $request;
-    }
-
-    public function handle(): string
+    public function handle(SubmitRequest $request): string
     {
         return view('submit', [
-            'image' => '/anim/'. $this->createImage(),
+            'image' => '/anim/'. $this->createImage($request),
         ]);
     }
 
-    private function createImage(): string
+    private function createImage(SubmitRequest $request): string
     {
         $file = time() . '.gif';
 
-        Console::bySize(...$this->request->getWidthAndHeight())
-            ->addLines($this->request->getStrings())
-            ->setUser($this->request->getUser())
+        Console::bySize(...$request->getWidthAndHeight())
+            ->addLines($request->getStrings())
+            ->setUser($request->getUser())
             ->save(__DIR__ . '/../../var/anim/'. $file);
 
         return $file;
