@@ -3,10 +3,18 @@
 namespace App\Console\Command;
 
 use App\Contracts\Command;
+use App\Contracts\ImageRepository;
 use App\Entities\Image;
 
 class PrintStat extends Command
 {
+    protected $images;
+
+    public function __construct(ImageRepository $images)
+    {
+        $this->images = $images;
+    }
+
     public static function getSignature(): string
     {
         return 'stat:print';
@@ -14,9 +22,7 @@ class PrintStat extends Command
 
     public function process()
     {
-        $files = Image::getAllPaths();
-
-        foreach ($files as $i => $file) {
+        foreach ($this->images->getAllPaths() as $i => $file) {
             $time = pathinfo($file, PATHINFO_FILENAME);
 
             $this->printLn($i . '. ' . date('Y-m-d H:i:s', $time));

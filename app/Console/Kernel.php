@@ -2,23 +2,24 @@
 
 namespace App\Console;
 
-use App\Console\Command\ClearCache;
-use App\Console\Command\PrintStat;
-use App\Contracts\Command;
 use Core\Contracts\Container;
 
 class Kernel
 {
-    protected $commands = [
-        ClearCache::class,
-        PrintStat::class,
-    ];
+    protected $commands = [];
 
     protected $container;
 
     public function __construct(Container $container)
     {
         $this->container = $container;
+    }
+
+    public function add(string $commandClass): self
+    {
+        $this->commands[$commandClass::getSignature()] = $commandClass;
+
+        return $this;
     }
 
     public function handle()
@@ -45,14 +46,12 @@ class Kernel
         $this->container->make($command)->execute();
     }
 
-    protected function selectCommand(string $signature)
+    protected function selectCommand(string $signature): ?string
     {
-        foreach ($this->commands as $command) {
-            if ($command::getSignature() === $signature) {
-                return $command;
-            }
+        if (! array_key_exists($signature, $this->commands)) {
+            return null;
         }
 
-        return null;
+        return $this->commands[$signature];
     }
 }

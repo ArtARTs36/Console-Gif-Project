@@ -39,7 +39,7 @@ class CacheImageRepository implements ImageRepository
     /**
      * @return array<string>
      */
-    protected function getAllPaths(): array
+    public function getAllPaths(): array
     {
         return glob(__DIR__ . '/../../var/anim/*.gif') ?? [];
     }

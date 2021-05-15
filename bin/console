@@ -1,12 +1,17 @@
 #!/usr/bin/env php
 <?php
 
+use App\Console\Command\ClearCache;
+use App\Console\Command\PrintStat;
 use App\Console\Kernel;
 use Core\DependencyInjection\Container;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../app/bootstrap.php';
 
-$kernel = Container::getInstance()->make(Kernel::class);
+$kernel = Container::getInstance()
+    ->make(Kernel::class)
+    ->add(ClearCache::class)
+    ->add(PrintStat::class);
 
 $kernel->handle();
