@@ -11,6 +11,20 @@ class Cache
         $this->dir = $dir;
     }
 
+    public function forgetAll(): void
+    {
+        if (! file_exists($this->dir)) {
+            return;
+        }
+
+        $files = scandir($this->dir);
+        $files = array_diff($files, ['.', '..', '.gitignore']);
+
+        foreach ($files as $file) {
+            unlink($this->path($file));
+        }
+    }
+
     public function get(string $key)
     {
         if (file_exists($path = $this->path($key))) {

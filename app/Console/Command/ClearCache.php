@@ -13,13 +13,6 @@ class ClearCache extends Command
 
     public function process()
     {
-        $files = scandir(__DIR__ . '/../../../var/cache');
-        $files = array_diff($files, ['.', '..', '.gitignore']);
-
-        foreach ($files as $file) {
-            unlink($this->path($file));
-        }
-
         $this->printColored(static::COLOR_GREEN, 'Cache cleared!');
     }
 

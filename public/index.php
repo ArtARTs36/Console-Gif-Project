@@ -1,26 +1,13 @@
 <?php
 
-use App\Pages\Index;
-use App\Pages\LastImages;
-use App\Pages\Submit;
+use Core\DependencyInjection\Container;
+use Core\Http\Application;
+use Core\Http\Request;
 
 require_once 'server_ini.php';
 require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ .'/../app/bootstrap.php';
 
-$result = '';
-
-switch (uri()) {
-    case '/submit':
-        $result = Submit::handle();
-        break;
-
-    case '/last':
-        $result = LastImages::handle();
-        break;
-
-    default:
-        $result = Index::handle();
-        break;
-}
-
-echo $result;
+/** @var Application $app */
+$app = Container::getInstance()->make(Application::class);
+echo $app->run(Request::fromGlobal());

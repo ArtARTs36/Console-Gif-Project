@@ -18,12 +18,12 @@ function method(string $class, $variables): Method
 
 function post()
 {
-    return method(Post::class, $_POST);
+    return method(Post::class, $_POST ?? []);
 }
 
 function get()
 {
-    return method(\App\Http\Get::class, $_GET);
+    return method(\App\Http\Get::class, $_GET ?? []);
 }
 
 function uri(): ?string
