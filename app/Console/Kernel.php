@@ -5,6 +5,7 @@ namespace App\Console;
 use App\Console\Command\ClearCache;
 use App\Console\Command\PrintStat;
 use App\Contracts\Command;
+use Core\Contracts\Container;
 
 class Kernel
 {
@@ -12,6 +13,13 @@ class Kernel
         ClearCache::class,
         PrintStat::class,
     ];
+
+    protected $container;
+
+    public function __construct(Container $container)
+    {
+        $this->container = $container;
+    }
 
     public function handle()
     {
@@ -34,10 +42,7 @@ class Kernel
             return null;
         }
 
-        /** @var Command $command */
-        $command = new $command();
-
-        $command->execute();
+        $this->container->make($command)->execute();
     }
 
     protected function selectCommand(string $signature)

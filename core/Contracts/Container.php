@@ -15,4 +15,9 @@ interface Container extends ContainerInterface
      * @return mixed
      */
     public function callMethod(string $class, string $method);
+
+    /**
+     * @return mixed
+     */
+    public function make(string $class);
 }

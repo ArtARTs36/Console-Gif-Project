@@ -1,8 +1,12 @@
 #!/usr/bin/env php
 <?php
 
-require_once __DIR__ . '/../vendor/autoload.php';
+use App\Console\Kernel;
+use Core\DependencyInjection\Container;
 
-$kernel = new \App\Console\Kernel();
+require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../app/bootstrap.php';
+
+$kernel = Container::getInstance()->make(Kernel::class);
 
 $kernel->handle();
