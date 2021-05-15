@@ -2,6 +2,7 @@
 
 namespace Core\DependencyInjection;
 
+use Core\DependencyInjection\Exceptions\EntryNotFound;
 use Psr\Container\ContainerInterface;
 
 class Container implements ContainerInterface, \Core\Contracts\Container
@@ -42,6 +43,10 @@ class Container implements ContainerInterface, \Core\Contracts\Container
      */
     public function get(string $id)
     {
+        if (! $this->has($id)) {
+            throw new EntryNotFound($id);
+        }
+
         return $this->resolvedInstances[$id];
     }
 
