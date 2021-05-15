@@ -2,7 +2,9 @@
 
 namespace Core\DependencyInjection;
 
-class Container
+use Psr\Container\ContainerInterface;
+
+class Container implements ContainerInterface, \Core\Contracts\Container
 {
     protected static $selfInstance = null;
 
@@ -17,11 +19,18 @@ class Container
     /** @var array<string, string> */
     protected $contracts = [];
 
+    protected function __construct()
+    {
+        //
+    }
+
     public static function getInstance(): self
     {
         if (static::$selfInstance === null) {
             $instance = new static();
             $instance->resolvedInstances[static::class] = $instance;
+            $instance->contract(ContainerInterface::class, static::class);
+            $instance->contract(\Core\Contracts\Container::class, static::class);
             static::$selfInstance = $instance;
         }
 
@@ -31,7 +40,7 @@ class Container
     /**
      * @return object
      */
-    public function get($id)
+    public function get(string $id)
     {
         return $this->resolvedInstances[$id];
     }
@@ -84,7 +93,7 @@ class Container
         return $make($this);
     }
 
-    public function has($id)
+    public function has(string $id): bool
     {
         return array_key_exists($id, $this->resolvedInstances);
     }

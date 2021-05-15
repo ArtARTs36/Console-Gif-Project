@@ -2,7 +2,7 @@
 
 namespace Core\Http;
 
-use Core\DependencyInjection\Container;
+use Core\Contracts\Container;
 
 class Application
 {
