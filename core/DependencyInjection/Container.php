@@ -16,7 +16,7 @@ class Container
 
     public static function getInstance(): self
     {
-        if (! static::$selfInstance) {
+        if (static::$selfInstance === null) {
             $instance = new static();
             $instance->resolvedInstances[static::class] = $instance;
             static::$selfInstance = $instance;
@@ -37,6 +37,10 @@ class Container
     {
         if (empty($class)) {
             throw new \LogicException();
+        }
+
+        if (array_key_exists($class, $this->resolvedInstances)) {
+            return $this->resolvedInstances[$class];
         }
 
         if ($this->hasBind($class)) {
@@ -62,12 +66,16 @@ class Container
             $param = $parameter->getType()->__toString();
 
             if (class_exists($param)) {
-                $resolvedParameters[] = $this->make($param);
+                if ($this->has($param)) {
+                    $resolvedParameters[] = $this->get($param);
+                } else {
+                    $resolvedParameters[] = $this->make($param);
+                }
             } elseif (! empty($parameter->isDefaultValueAvailable())) {
                 $resolvedParameters[] = $parameter->getDefaultValue();
             } else {
                 throw new \LogicException(
-                    'Невозможно внедрить параметр: [' . $parameter->getPosition() . ']' . $param
+                    'Невозможно внедрить параметр: [' . $parameter->getPosition() . ']' . $param . ' в '. $class
                 );
             }
         }

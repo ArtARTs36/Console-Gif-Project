@@ -6,7 +6,7 @@ use App\Contracts\Page;
 
 class Index extends Page
 {
-    public function process(): string
+    public function handle(): string
     {
         return view('index');
     }

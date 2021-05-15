@@ -4,15 +4,10 @@ namespace App\Contracts;
 
 abstract class Page
 {
-    abstract public function process(): string;
-
-    public static function handle()
-    {
-        return new static();
-    }
+    abstract public function handle(): string;
 
     public function __toString(): string
     {
-        return $this->process();
+        return $this->handle();
     }
 }

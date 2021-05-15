@@ -15,7 +15,7 @@ class Submit extends Page
         $this->request = $request ?? new SubmitRequest();
     }
 
-    public function process(): string
+    public function handle(): string
     {
         return view('submit', [
             'image' => '/anim/'. $this->createImage(),
