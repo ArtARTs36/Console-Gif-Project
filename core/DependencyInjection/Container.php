@@ -77,7 +77,7 @@ class Container implements ContainerInterface, \Core\Contracts\Container
         $constructor = $reflector->getMethod('__construct');
         $parameters = $constructor->getParameters();
 
-        if (empty($parameters)) {
+        if (count($parameters) === 0) {
             return $this->resolved($reflector->newInstance());
         }
 
