@@ -31,5 +31,10 @@
         "files": [
             "app\\Support\\helpers.php"
         ]
+    },
+    "scripts": {
+        "lint": [
+            "./vendor/bin/phpcs --standard=PSR2 app core"
+        ]
     }
 }

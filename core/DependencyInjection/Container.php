@@ -2,6 +2,7 @@
 
 namespace Core\DependencyInjection;
 
+use Core\DependencyInjection\Exceptions\DependencyResolutionFailed;
 use Core\DependencyInjection\Exceptions\EntryNotFound;
 use Psr\Container\ContainerInterface;
 
@@ -151,6 +152,7 @@ class Container implements ContainerInterface, \Core\Contracts\Container
 
     /**
      * @param array<\ReflectionParameter> $parameters
+     * @throws DependencyResolutionFailed
      */
     protected function resolveParameters(array $parameters): array
     {
@@ -168,8 +170,10 @@ class Container implements ContainerInterface, \Core\Contracts\Container
             } elseif (! empty($parameter->isDefaultValueAvailable())) {
                 $resolvedParameters[] = $parameter->getDefaultValue();
             } else {
-                throw new \LogicException(
-                    'Невозможно внедрить параметр: [' . $parameter->getPosition() . ']' . $param . ' в '. $parameter->getDeclaringClass()->getName()
+                throw new DependencyResolutionFailed(
+                    $parameter->getPosition(),
+                    $param,
+                    $parameter->getDeclaringClass()->getName()
                 );
             }
         }
