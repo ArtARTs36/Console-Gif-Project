@@ -4,7 +4,7 @@ namespace App\Support;
 
 class Viewer
 {
-    public static function render(string $template, array $attributes = []): string
+    public function render(string $template, array $attributes = []): string
     {
         $template = file_get_contents(view_path($template));
 
@@ -47,7 +47,7 @@ class Viewer
         }, array_keys($attributes));
     }
 
-    protected static function prepareInclude(string $content, array $attributes): string
+    protected function prepareInclude(string $content, array $attributes): string
     {
         $matches = [];
 
@@ -61,7 +61,7 @@ class Viewer
 
                 $file = $matches[1][$index];
 
-                $content = str_replace($code, static::render($file, $attributes), $content);
+                $content = str_replace($code, $this->render($file, $attributes), $content);
             }
         }
 

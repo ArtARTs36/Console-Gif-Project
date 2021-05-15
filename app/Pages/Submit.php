@@ -5,11 +5,11 @@ namespace App\Pages;
 use App\Http\Requests\SubmitRequest;
 use ArtARTs36\ConsoleGif\Console;
 
-class Submit
+class Submit extends Page
 {
     public function handle(SubmitRequest $request): string
     {
-        return view('submit', [
+        return $this->viewer->render('submit', [
             'image' => '/anim/'. $this->createImage($request),
         ]);
     }

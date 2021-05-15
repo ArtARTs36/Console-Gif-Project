@@ -2,10 +2,10 @@
 
 namespace App\Pages;
 
-class Index
+class Index extends Page
 {
     public function handle(): string
     {
-        return view('index');
+        return $this->viewer->render('index');
     }
 }
