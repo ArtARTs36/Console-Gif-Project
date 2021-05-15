@@ -14,4 +14,4 @@ $kernel = Container::getInstance()
     ->add(ClearCache::class)
     ->add(PrintStat::class);
 
-$kernel->handle();
+$kernel->handle($_SERVER['argv'] ?? []);

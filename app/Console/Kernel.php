@@ -22,12 +22,9 @@ class Kernel
         return $this;
     }
 
-    public function handle()
+    public function handle(array $argv)
     {
-        $argc = $_SERVER['argc'] ?? 1;
-        $argv = $_SERVER['argv'] ?? [];
-
-        if ($argc === 1 || empty($argv) || count($argv) === 1) {
+        if (count($argv) < 2) {
             echo "Command Not Found";
 
             return null;
