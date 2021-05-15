@@ -25,8 +25,6 @@ class HandleExceptions
             } else {
                 return $this->handler->reportConsole($exception);
             }
-
-            return null;
         }
     }
 }
