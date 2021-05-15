@@ -55,7 +55,7 @@ class Container implements ContainerInterface, \Core\Contracts\Container
             $class = $this->contracts[$class];
         }
 
-        if (array_key_exists($class, $this->resolvedInstances)) {
+        if ($this->has($class)) {
             return $this->resolvedInstances[$class];
         }
 
