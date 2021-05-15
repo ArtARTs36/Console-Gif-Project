@@ -31,9 +31,7 @@ abstract class Command
 
     protected function colored(string $color, string $string): string
     {
-        $coloredString = "";
-
-        $coloredString .= "\033[" . $color . "m";
+        $coloredString = "\033[" . $color . "m";
 
         $coloredString .= $string . "\033[0m";
 
