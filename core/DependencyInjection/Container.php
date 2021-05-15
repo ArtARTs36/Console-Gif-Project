@@ -114,6 +114,13 @@ class Container
         return $this->make($class)->$method();
     }
 
+    public function set(string $class, object $object): self
+    {
+        $this->resolvedInstances[$class] = $object;
+
+        return $this;
+    }
+
     protected function hasBind(string $abstract): bool
     {
         return array_key_exists($abstract, $this->binds);

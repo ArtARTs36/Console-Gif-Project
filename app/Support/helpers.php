@@ -16,11 +16,6 @@ function method(string $class, $variables): Method
     return $container[$class];
 }
 
-function post()
-{
-    return method(Post::class, $_POST ?? []);
-}
-
 function view(string $template, array $attributes = []): string
 {
     return Viewer::render($template, $attributes);

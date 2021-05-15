@@ -10,9 +10,9 @@ class Submit extends Page
 {
     protected $request;
 
-    public function __construct(?SubmitRequest $request = null)
+    public function __construct(SubmitRequest $request)
     {
-        $this->request = $request ?? new SubmitRequest();
+        $this->request = $request;
     }
 
     public function handle(): string
