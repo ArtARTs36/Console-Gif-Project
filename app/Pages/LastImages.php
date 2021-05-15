@@ -2,8 +2,6 @@
 
 namespace App\Pages;
 
-use App\Contracts\Page;
-use App\Entities\Image;
 use App\Repositories\CacheImageRepository;
 
 class LastImages

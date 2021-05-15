@@ -2,7 +2,6 @@
 
 namespace App\Pages;
 
-use App\Contracts\Page;
 use App\Http\Requests\SubmitRequest;
 use ArtARTs36\ConsoleGif\Console;
 
