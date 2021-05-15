@@ -2,10 +2,11 @@
 
 namespace App\Repositories;
 
+use App\Contracts\ImageRepository;
 use App\Entities\Image;
 use App\Support\Cache;
 
-class CacheImageRepository
+class CacheImageRepository implements ImageRepository
 {
     protected $cache;
 

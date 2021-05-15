@@ -2,14 +2,14 @@
 
 namespace App\Pages;
 
-use App\Repositories\CacheImageRepository;
+use App\Contracts\ImageRepository;
 use App\Support\Viewer;
 
 class LastImages extends Page
 {
     protected $images;
 
-    public function __construct(CacheImageRepository $images, Viewer $viewer)
+    public function __construct(ImageRepository $images, Viewer $viewer)
     {
         $this->images = $images;
 

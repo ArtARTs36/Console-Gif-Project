@@ -14,6 +14,9 @@ class Container
     /** @var array<string, callable>  */
     protected $afterResolved = [];
 
+    /** @var array<string, string> */
+    protected $contracts = [];
+
     public static function getInstance(): self
     {
         if (static::$selfInstance === null) {
@@ -37,6 +40,10 @@ class Container
     {
         if (empty($class)) {
             throw new \LogicException();
+        }
+
+        if (array_key_exists($class, $this->contracts)) {
+            $class = $this->contracts[$class];
         }
 
         if (array_key_exists($class, $this->resolvedInstances)) {
@@ -103,6 +110,13 @@ class Container
         return $this;
     }
 
+    public function contract(string $abstract, string $implementation): self
+    {
+        $this->contracts[$abstract] = $implementation;
+
+        return $this;
+    }
+
     protected function hasBind(string $abstract): bool
     {
         return array_key_exists($abstract, $this->binds);
@@ -131,7 +145,7 @@ class Container
         foreach ($parameters as $parameter) {
             $param = $parameter->getType()->__toString();
 
-            if (class_exists($param)) {
+            if (interface_exists($param) || class_exists($param)) {
                 if ($this->has($param)) {
                     $resolvedParameters[] = $this->get($param);
                 } else {
@@ -141,7 +155,7 @@ class Container
                 $resolvedParameters[] = $parameter->getDefaultValue();
             } else {
                 throw new \LogicException(
-                    'Невозможно внедрить параметр: [' . $parameter->getPosition() . ']' . $param . ' в '. $class
+                    'Невозможно внедрить параметр: [' . $parameter->getPosition() . ']' . $param . ' в '. $parameter->getDeclaringClass()->getName()
                 );
             }
         }
