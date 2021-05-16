@@ -2,18 +2,18 @@
 
 namespace Tests\Core;
 
-use Core\Http\Router;
+use Core\Http\ArrayRouter;
 use Tests\TestCase;
 
-class RouterTest extends TestCase
+class ArrayRouterTest extends TestCase
 {
     /**
-     * @covers \Core\Http\Router::get
+     * @covers \Core\Http\ArrayRouter::get
      */
     public function testGet(): void
     {
-        /** @var Router $router */
-        $router = $this->appContainer->make(Router::class);
+        /** @var ArrayRouter $router */
+        $router = $this->appContainer->make(ArrayRouter::class);
 
         $router->get('/home', 'TestAction');
 
@@ -22,12 +22,12 @@ class RouterTest extends TestCase
     }
 
     /**
-     * @covers \Core\Http\Router::post
+     * @covers \Core\Http\ArrayRouter::post
      */
     public function testPost(): void
     {
-        /** @var Router $router */
-        $router = $this->appContainer->make(Router::class);
+        /** @var ArrayRouter $router */
+        $router = $this->appContainer->make(ArrayRouter::class);
 
         $router->post('/home', 'TestAction');
 
@@ -35,7 +35,7 @@ class RouterTest extends TestCase
         self::assertArrayHasKey('/home', $routes['POST']);
     }
 
-    protected function getRoutes(Router $router): array
+    protected function getRoutes(ArrayRouter $router): array
     {
         return $this->getClosedProperty($router, 'routes');
     }

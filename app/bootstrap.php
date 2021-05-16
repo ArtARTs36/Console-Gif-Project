@@ -21,7 +21,8 @@ use Core\Environment\File\FileEnvFetcher;
 use Core\Exception\Contracts\ExceptionHandler;
 use Core\FileSystem\Contracts\FileSystem;
 use Core\FileSystem\LocalFileSystem;
-use Core\Http\Router;
+use Core\Http\ArrayRouter;
+use Core\Http\Contracts\Router;
 use Core\Log\Logger;
 use Core\View\Contracts\Viewer;
 use Core\View\RegexViewer;
@@ -32,7 +33,7 @@ $container = (new ContainerBuilder())
     ->bind(CacheManager::class, function (Container $container) {
         return new Cache(__DIR__ . '/../var/cache', $container->make(FileSystem::class));
     })
-    ->after(Router::class, function (Router $router) {
+    ->after(ArrayRouter::class, function (Router $router) {
         (new WebRoutes())->applyRoutes($router);
     })
     ->bind(Viewer::class, function (Container $container) {
@@ -54,7 +55,8 @@ $container = (new ContainerBuilder())
     ->contract(ConsoleOutput::class, ConsolePrinter::class)
     ->contract(EnvFetcher::class, FileEnvFetcher::class)
     ->contract(LoggerInterface::class, Logger::class)
-    ->contract(FileSystem::class, LocalFileSystem::class);
+    ->contract(FileSystem::class, LocalFileSystem::class)
+    ->contract(Router::class, ArrayRouter::class);
 
 $container
     ->make(EnvInstaller::class)

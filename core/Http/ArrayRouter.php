@@ -3,9 +3,10 @@
 namespace Core\Http;
 
 use Core\Http\Contracts\NotFoundException;
+use Core\Http\Contracts\Router;
 use Core\Http\Exceptions\RouteNotFound;
 
-class Router
+class ArrayRouter implements Router
 {
     protected $routes = [];
 

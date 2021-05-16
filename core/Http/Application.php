@@ -4,6 +4,7 @@ namespace Core\Http;
 
 use Core\DependencyInjection\Contracts\Container;
 use Core\Exception\HandleExceptions;
+use Core\Http\Contracts\Router;
 
 class Application
 {
