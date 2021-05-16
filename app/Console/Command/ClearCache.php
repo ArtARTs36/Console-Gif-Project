@@ -3,6 +3,7 @@
 namespace App\Console\Command;
 
 use App\Contracts\Command;
+use Core\Contracts\ConsoleOutput;
 
 class ClearCache extends Command
 {
@@ -13,7 +14,7 @@ class ClearCache extends Command
 
     public function process()
     {
-        $this->printColored(static::COLOR_GREEN, 'Cache cleared!');
+        $this->output->printColored(ConsoleOutput::COLOR_GREEN, 'Cache cleared!');
     }
 
     private function path(string $file): string
