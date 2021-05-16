@@ -2,6 +2,8 @@
 
 namespace Core\DependencyInjection;
 
+use Core\DependencyInjection\Contracts\Container;
+
 class ContainerBuilder
 {
     protected $target;
@@ -11,10 +13,10 @@ class ContainerBuilder
         $this->target = $target;
     }
 
-    public function build(): \Core\DependencyInjection\Contracts\Container
+    public function build(): Container
     {
         $class = $this->target;
-        /** @var \Core\DependencyInjection\Contracts\Container $container */
+        /** @var Container $container */
         $container = new $class();
 
         foreach (class_implements($this->target) as $interface) {
