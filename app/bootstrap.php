@@ -35,8 +35,8 @@ $container = (new ContainerBuilder())
     ->after(Router::class, function (Router $router) {
         (new WebRoutes())->applyRoutes($router);
     })
-    ->bind(Viewer::class, function () {
-        return new RegexViewer(__DIR__ . '/../views');
+    ->bind(Viewer::class, function (Container $container) {
+        return new RegexViewer(__DIR__ . '/../views', $container->make(FileSystem::class));
     })
     ->bind(PushAllSender::class, function (Container $container) {
         /** @var Environment $env */

@@ -2,20 +2,24 @@
 
 namespace Core\View;
 
+use Core\FileSystem\Contracts\FileSystem;
 use Core\View\Contracts\Viewer;
 
 class RegexViewer implements Viewer
 {
     protected $dir;
 
-    public function __construct(string $dir)
+    protected $files;
+
+    public function __construct(string $dir, FileSystem $files)
     {
         $this->dir = $dir;
+        $this->files = $files;
     }
 
     public function render(string $template, array $attributes = []): string
     {
-        $template = file_get_contents($this->path($template));
+        $template = $this->files->get($this->path($template));
 
         $template = $this->prepareInclude($template, $attributes);
 

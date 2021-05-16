@@ -6,12 +6,20 @@ use ArtARTs36\EnvEditor\Editor;
 use Core\Environment\Contracts\EnvFetcher;
 use Core\Environment\Contracts\Environment;
 use Core\Environment\NullEnvironment;
+use Core\FileSystem\Contracts\FileSystem;
 
-class FileEnvFetcher implements EnvFetcher
+final class FileEnvFetcher implements EnvFetcher
 {
+    private $fileSystem;
+
+    public function __construct(FileSystem $fileSystem)
+    {
+        $this->fileSystem = $fileSystem;
+    }
+
     public function fetch(string $path): Environment
     {
-        if (! file_exists($path)) {
+        if (! $this->fileSystem->exists($path)) {
             return new NullEnvironment();
         }
 
