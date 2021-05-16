@@ -3,10 +3,20 @@
 namespace App\Console\Command;
 
 use App\Contracts\Command;
+use App\Support\Cache;
 use Core\Contracts\ConsoleOutput;
 
 class ClearCache extends Command
 {
+    protected $cache;
+
+    public function __construct(Cache $cache, ConsoleOutput $output)
+    {
+        parent::__construct($output);
+
+        $this->cache = $cache;
+    }
+
     public static function getSignature(): string
     {
         return 'cache:clear';
@@ -14,11 +24,8 @@ class ClearCache extends Command
 
     public function process()
     {
-        $this->output->printColored(ConsoleOutput::COLOR_GREEN, 'Cache cleared!');
-    }
+        $this->cache->forgetAll();
 
-    private function path(string $file): string
-    {
-        return realpath(__DIR__  . '/../../../var/cache/' . $file);
+        $this->output->printColored(ConsoleOutput::COLOR_GREEN, 'Cache cleared!');
     }
 }
