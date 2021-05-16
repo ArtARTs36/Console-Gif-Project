@@ -5,6 +5,7 @@ use App\Console\Command\ClearCache;
 use App\Console\Command\PrintStat;
 use App\Console\Kernel;
 use Core\Console\ConsolePrinter;
+use Core\Console\Contracts\ConsoleKernel;
 use Core\Console\Contracts\ConsoleOutput;
 
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -13,7 +14,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 $container = include __DIR__ . '/../app/bootstrap.php';
 
 $kernel = $container
-    ->make(Kernel::class)
+    ->make(ConsoleKernel::class)
     ->add(ClearCache::class)
     ->add(PrintStat::class);
 

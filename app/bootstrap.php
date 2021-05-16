@@ -9,7 +9,9 @@ use ArtARTs36\PushAllSender\Senders\PushAllSender;
 use Core\Cache\Cache;
 use Core\Cache\Contracts\CacheManager;
 use Core\Console\ConsolePrinter;
+use Core\Console\Contracts\ConsoleKernel;
 use Core\Console\Contracts\ConsoleOutput;
+use Core\Console\Kernel;
 use Core\DependencyInjection\ContainerBuilder;
 use Core\Exception\Contracts\ExceptionHandler;
 use Core\Http\Router;
@@ -33,4 +35,5 @@ return (new ContainerBuilder())
     ->contract(PusherInterface::class, PushAllSender::class)
     ->contract(ImageRepository::class, CacheImageRepository::class)
     ->contract(ExceptionHandler::class, AppExceptionHandler::class)
+    ->contract(ConsoleKernel::class, Kernel::class)
     ->contract(ConsoleOutput::class, ConsolePrinter::class);

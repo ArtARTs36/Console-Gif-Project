@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Console;
+namespace Core\Console;
 
+use Core\Console\Contracts\ConsoleKernel;
 use Core\Console\Contracts\ConsoleOutput;
 use Core\DependencyInjection\Contracts\Container;
 use Core\Exception\HandleExceptions;
 
-class Kernel
+class Kernel implements ConsoleKernel
 {
     protected $commands = [];
 
