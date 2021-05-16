@@ -8,5 +8,5 @@ interface ExceptionHandler
 
     public function reportHtml(\Throwable $exception): string;
 
-    public function reportConsole(\Throwable $exception): string;
+    public function reportConsole(\Throwable $exception): void;
 }

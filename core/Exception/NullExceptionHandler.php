@@ -16,8 +16,8 @@ final class NullExceptionHandler implements ExceptionHandler
         return '';
     }
 
-    public function reportConsole(\Throwable $exception): string
+    public function reportConsole(\Throwable $exception): void
     {
-        return '';
+        //
     }
 }

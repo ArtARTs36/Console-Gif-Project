@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use App\Support\Viewer;
+use Core\Contracts\ConsoleOutput;
 use Core\Exception\Contracts\ExceptionHandler;
 
 class AppExceptionHandler implements ExceptionHandler
@@ -11,10 +12,13 @@ class AppExceptionHandler implements ExceptionHandler
 
     private $notifier;
 
-    public function __construct(Viewer $viewer, ExceptionNotifier $notifier)
+    private $console;
+
+    public function __construct(Viewer $viewer, ExceptionNotifier $notifier, ConsoleOutput $console)
     {
         $this->viewer = $viewer;
         $this->notifier = $notifier;
+        $this->console = $console;
     }
 
     public function handle(\Throwable $exception)
@@ -29,8 +33,8 @@ class AppExceptionHandler implements ExceptionHandler
         ]);
     }
 
-    public function reportConsole(\Throwable $exception): string
+    public function reportConsole(\Throwable $exception): void
     {
-        return $exception->getMessage();
+        $this->console->error($exception->getMessage());
     }
 }

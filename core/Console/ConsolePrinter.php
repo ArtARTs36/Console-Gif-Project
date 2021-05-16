@@ -27,7 +27,7 @@ class ConsolePrinter implements ConsoleOutput
 
     public function error(string $error): void
     {
-        $this->printColored(ConsoleColor::COLOR_RED, $error);
+        $this->printColored(ConsoleColor::COLOR_RED, 'Ошибка: '. $error);
     }
 
     protected function colored(string $color, string $string): string
