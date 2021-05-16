@@ -19,6 +19,8 @@ use Core\Environment\Contracts\Environment;
 use Core\Environment\EnvInstaller;
 use Core\Environment\File\FileEnvFetcher;
 use Core\Exception\Contracts\ExceptionHandler;
+use Core\FileSystem\Contracts\FileSystem;
+use Core\FileSystem\LocalFileSystem;
 use Core\Http\Router;
 use Core\Log\Logger;
 use Core\View\Contracts\Viewer;
@@ -51,7 +53,8 @@ $container = (new ContainerBuilder())
     ->contract(ConsoleKernel::class, Kernel::class)
     ->contract(ConsoleOutput::class, ConsolePrinter::class)
     ->contract(EnvFetcher::class, FileEnvFetcher::class)
-    ->contract(LoggerInterface::class, Logger::class);
+    ->contract(LoggerInterface::class, Logger::class)
+    ->contract(FileSystem::class, LocalFileSystem::class);
 
 $container
     ->make(EnvInstaller::class)
