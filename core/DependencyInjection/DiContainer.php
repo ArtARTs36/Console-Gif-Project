@@ -6,7 +6,7 @@ use Core\DependencyInjection\Exceptions\DependencyResolutionFailed;
 use Core\DependencyInjection\Exceptions\EntryNotFound;
 use Psr\Container\ContainerInterface;
 
-class DiContainer implements ContainerInterface, \Core\Contracts\Container
+class DiContainer implements ContainerInterface, \Core\DependencyInjection\Contracts\Container
 {
     /** @var array<string, object> */
     protected $resolvedInstances = [];

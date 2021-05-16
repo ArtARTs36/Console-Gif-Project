@@ -11,10 +11,10 @@ class ContainerBuilder
         $this->target = $target;
     }
 
-    public function build(): \Core\Contracts\Container
+    public function build(): \Core\DependencyInjection\Contracts\Container
     {
         $class = $this->target;
-        /** @var \Core\Contracts\Container $container */
+        /** @var \Core\DependencyInjection\Contracts\Container $container */
         $container = new $class();
 
         foreach (class_implements($this->target) as $interface) {

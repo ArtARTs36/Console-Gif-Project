@@ -8,7 +8,7 @@ use core\Exception\NullExceptionHandler;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
-    /** @var \Core\Contracts\Container */
+    /** @var \Core\DependencyInjection\Contracts\Container */
     protected $appContainer;
 
     protected function setUp()

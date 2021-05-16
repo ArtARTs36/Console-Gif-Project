@@ -3,7 +3,7 @@
 namespace App\Console;
 
 use Core\Console\Contracts\ConsoleOutput;
-use Core\Contracts\Container;
+use Core\DependencyInjection\Contracts\Container;
 use Core\Exception\HandleExceptions;
 
 class Kernel

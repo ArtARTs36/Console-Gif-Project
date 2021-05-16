@@ -2,7 +2,7 @@
 
 namespace Core\Http;
 
-use Core\Contracts\Container;
+use Core\DependencyInjection\Contracts\Container;
 use Core\Exception\HandleExceptions;
 
 class Application

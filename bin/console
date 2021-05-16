@@ -9,10 +9,8 @@ use Core\Console\Contracts\ConsoleOutput;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-/** @var \Core\Contracts\Container $container */
+/** @var \Core\DependencyInjection\Contracts\Container $container */
 $container = include __DIR__ . '/../app/bootstrap.php';
-
-$container->contract(ConsoleOutput::class, ConsolePrinter::class);
 
 $kernel = $container
     ->make(Kernel::class)

@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Contracts;
+namespace Core\DependencyInjection\Contracts;
 
 use Psr\Container\ContainerInterface;
 
