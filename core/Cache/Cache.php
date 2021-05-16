@@ -3,19 +3,23 @@
 namespace Core\Cache;
 
 use Core\Cache\Contracts\CacheManager;
+use Core\FileSystem\Contracts\FileSystem;
 
 class Cache implements CacheManager
 {
     private $dir;
 
-    public function __construct(string $dir)
+    private $files;
+
+    public function __construct(string $dir, FileSystem $files)
     {
         $this->dir = $dir;
+        $this->files = $files;
     }
 
     public function forgetAll(): void
     {
-        if (! file_exists($this->dir)) {
+        if (! $this->files->exists($this->dir)) {
             return;
         }
 
@@ -23,14 +27,14 @@ class Cache implements CacheManager
         $files = array_diff($files, ['.', '..', '.gitignore']);
 
         foreach ($files as $file) {
-            unlink($this->path($file));
+            $this->files->delete($file);
         }
     }
 
     public function get(string $key)
     {
-        if (file_exists($path = $this->path($key))) {
-            return json_decode(file_get_contents($path), true);
+        if ($this->files->exists($path = $this->path($key))) {
+            return json_decode($this->files->get($path), true);
         }
 
         return null;
@@ -40,11 +44,11 @@ class Cache implements CacheManager
     {
         $path = $this->path($key);
 
-        if (! file_exists($path)) {
+        if (! $this->files->exists($path)) {
             return null;
         }
 
-        $last = filemtime($path);
+        $last = $this->files->getUpdatedTime($path);
 
         if (time() - $last < $ttl) {
             return $this->get($key);
@@ -80,14 +84,14 @@ class Cache implements CacheManager
 
     private function putByPath(string $path, $data): self
     {
-        file_put_contents($path, json_encode($data));
+        $this->files->create($path, json_encode($data));
 
         return $this;
     }
 
     private function forgetByPath(string $path): self
     {
-        unlink($path);
+        $this->files->delete($path);
 
         return $this;
     }

@@ -2,18 +2,22 @@
 
 namespace Core\Log;
 
+use Core\FileSystem\Contracts\FileSystem;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LoggerTrait;
 
-class Logger implements LoggerInterface
+final class Logger implements LoggerInterface
 {
     use LoggerTrait;
 
     private $dir;
 
-    public function __construct(string $dir)
+    private $files;
+
+    public function __construct(string $dir, FileSystem $files)
     {
         $this->dir = $dir;
+        $this->files = $files;
     }
 
     public function log($level, $message, array $context = [])
@@ -21,7 +25,7 @@ class Logger implements LoggerInterface
         $log = compact('level', 'message', 'context');
         $json = json_encode($log);
 
-        file_put_contents($this->buildPath(), $json, FILE_APPEND);
+        $this->files->append($this->buildPath(), $json);
     }
 
     private function buildPath(): string

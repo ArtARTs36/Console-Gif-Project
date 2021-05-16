@@ -29,8 +29,8 @@ use Psr\Log\LoggerInterface;
 
 $container = (new ContainerBuilder())
     ->build()
-    ->bind(CacheManager::class, function () {
-        return new Cache(__DIR__ . '/../var/cache');
+    ->bind(CacheManager::class, function (Container $container) {
+        return new Cache(__DIR__ . '/../var/cache', $container->make(FileSystem::class));
     })
     ->after(Router::class, function (Router $router) {
         (new WebRoutes())->applyRoutes($router);
@@ -44,8 +44,8 @@ $container = (new ContainerBuilder())
 
         return new PushAllSender($env->get('PUSHALL_CHANNEL_ID'), $env->get('PUSHALL_API_KEY'));
     })
-    ->bind(Logger::class, function () {
-        return new Logger(__DIR__ . '/../var/logs');
+    ->bind(Logger::class, function (Container $container) {
+        return new Logger(__DIR__ . '/../var/logs', $container->make(FileSystem::class));
     })
     ->contract(PusherInterface::class, PushAllSender::class)
     ->contract(ImageRepository::class, CacheImageRepository::class)
