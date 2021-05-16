@@ -18,6 +18,10 @@ class HandleExceptions
         try {
             return $callback();
         } catch (\Throwable $exception) {
+            $responseCode = $exception->getCode() !== 0 ? $exception->getCode() : 500;
+
+            http_response_code($responseCode);
+
             $this->handler->handle($exception);
 
             if ($point === 'web') {
