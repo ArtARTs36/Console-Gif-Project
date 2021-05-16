@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use Core\Contracts\ConsoleOutput;
 use Core\Contracts\Container;
 use Core\Exception\HandleExceptions;
 
@@ -13,10 +14,13 @@ class Kernel
 
     protected $exceptions;
 
-    public function __construct(Container $container, HandleExceptions $exceptions)
+    protected $output;
+
+    public function __construct(Container $container, HandleExceptions $exceptions, ConsoleOutput $output)
     {
         $this->container = $container;
         $this->exceptions = $exceptions;
+        $this->output = $output;
     }
 
     public function add(string $commandClass): self
@@ -36,7 +40,7 @@ class Kernel
     protected function run(array $argv): ?string
     {
         if (count($argv) < 2) {
-            echo "Command Not Found";
+            $this->output->error("Command Not Found");
 
             return null;
         }
@@ -46,7 +50,7 @@ class Kernel
         $command = $this->selectCommand($signature);
 
         if (null === $command) {
-            echo "Command Not Found";
+            $this->output->error("Command Not Found");
 
             return null;
         }

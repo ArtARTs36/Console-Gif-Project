@@ -25,12 +25,15 @@ class ConsolePrinter implements ConsoleOutput
         fwrite(STDERR, $text);
     }
 
+    public function error(string $error): void
+    {
+        $this->printColored(static::COLOR_RED, $error);
+    }
+
     protected function colored(string $color, string $string): string
     {
-        $coloredString = "\033[" . $color . "m";
+        $colored = "\033[" . $color . "m";
 
-        $coloredString .= $string . "\033[0m";
-
-        return $coloredString;
+        return $colored . $string . "\033[0m";
     }
 }

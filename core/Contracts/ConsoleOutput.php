@@ -18,4 +18,6 @@ interface ConsoleOutput
     public function print(string $text): void;
 
     public function printLn(string ...$texts): void;
+
+    public function error(string $error): void;
 }
