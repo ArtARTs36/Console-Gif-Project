@@ -56,7 +56,7 @@ class Kernel implements ConsoleKernel
             return null;
         }
 
-        return $this->container->make($command)->execute();
+        return $this->container->callMethod($command, 'execute');
     }
 
     protected function selectCommand(string $signature): ?string

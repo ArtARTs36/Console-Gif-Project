@@ -11,4 +11,6 @@ interface ConsoleOutput
     public function printLn(string ...$texts): void;
 
     public function error(string $error): void;
+
+    public function ask(string $question, ?string $color = null): string;
 }

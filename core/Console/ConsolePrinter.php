@@ -6,6 +6,17 @@ use Core\Console\Contracts\ConsoleOutput;
 
 class ConsolePrinter implements ConsoleOutput
 {
+    public function ask(string $question, ?string $color = null): string
+    {
+        if ($color) {
+            $this->printColored($color, $question . "\n-> ");
+        } else {
+            $this->print($question . "\n-> ");
+        }
+
+        return fgets(STDIN);
+    }
+
     public function printLn(string ...$texts): void
     {
         foreach ($texts as $text) {

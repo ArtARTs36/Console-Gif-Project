@@ -2,19 +2,17 @@
 
 namespace App\Console\Command;
 
-use App\Contracts\Command;
 use App\Contracts\ImageRepository;
+use Core\Console\Contracts\ConsoleCommand;
 use Core\Console\Contracts\ConsoleOutput;
 
-class PrintStat extends Command
+class PrintStat implements ConsoleCommand
 {
     protected $images;
 
-    public function __construct(ImageRepository $images, ConsoleOutput $output)
+    public function __construct(ImageRepository $images)
     {
         $this->images = $images;
-
-        parent::__construct($output);
     }
 
     public static function getSignature(): string
@@ -22,12 +20,12 @@ class PrintStat extends Command
         return 'stat:print';
     }
 
-    public function process()
+    public function execute(ConsoleOutput $output)
     {
         foreach ($this->images->getAllPaths() as $i => $file) {
             $time = pathinfo($file, PATHINFO_FILENAME);
 
-            $this->output->printLn($i . '. ' . date('Y-m-d H:i:s', $time));
+            $output->printLn($i . '. ' . date('Y-m-d H:i:s', $time));
         }
     }
 }

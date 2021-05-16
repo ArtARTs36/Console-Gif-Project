@@ -5,16 +5,15 @@ namespace App\Console\Command;
 use App\Contracts\Command;
 use Core\Cache\Contracts\CacheManager;
 use Core\Console\ConsoleColor;
+use Core\Console\Contracts\ConsoleCommand;
 use Core\Console\Contracts\ConsoleOutput;
 
-class ClearCache extends Command
+class ClearCache implements ConsoleCommand
 {
     protected $cache;
 
-    public function __construct(CacheManager $cache, ConsoleOutput $output)
+    public function __construct(CacheManager $cache)
     {
-        parent::__construct($output);
-
         $this->cache = $cache;
     }
 
@@ -23,10 +22,10 @@ class ClearCache extends Command
         return 'cache:clear';
     }
 
-    public function process()
+    public function execute(ConsoleOutput $output)
     {
         $this->cache->forgetAll();
 
-        $this->output->printColored(ConsoleColor::COLOR_GREEN, 'Cache cleared!');
+        $output->printColored(ConsoleColor::COLOR_GREEN, 'Cache cleared!');
     }
 }
