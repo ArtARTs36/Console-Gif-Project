@@ -3,7 +3,7 @@
 namespace App\Console\Command;
 
 use App\Contracts\Command;
-use App\Support\Cache;
+use Core\Cache\Contracts\CacheManager;
 use Core\Console\ConsoleColor;
 use Core\Contracts\ConsoleOutput;
 
@@ -11,7 +11,7 @@ class ClearCache extends Command
 {
     protected $cache;
 
-    public function __construct(Cache $cache, ConsoleOutput $output)
+    public function __construct(CacheManager $cache, ConsoleOutput $output)
     {
         parent::__construct($output);
 

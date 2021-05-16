@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Support;
+namespace Core\Cache;
 
-class Cache
+use Core\Cache\Contracts\CacheManager;
+
+class Cache implements CacheManager
 {
     private $dir;
 

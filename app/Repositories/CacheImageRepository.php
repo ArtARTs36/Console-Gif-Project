@@ -4,13 +4,13 @@ namespace App\Repositories;
 
 use App\Contracts\ImageRepository;
 use App\Entities\Image;
-use App\Support\Cache;
+use Core\Cache\Contracts\CacheManager;
 
 class CacheImageRepository implements ImageRepository
 {
     protected $cache;
 
-    public function __construct(Cache $cache)
+    public function __construct(CacheManager $cache)
     {
         $this->cache = $cache;
     }
