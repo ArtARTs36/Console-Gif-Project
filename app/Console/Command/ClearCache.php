@@ -4,6 +4,7 @@ namespace App\Console\Command;
 
 use App\Contracts\Command;
 use App\Support\Cache;
+use Core\Console\ConsoleColor;
 use Core\Contracts\ConsoleOutput;
 
 class ClearCache extends Command
@@ -26,6 +27,6 @@ class ClearCache extends Command
     {
         $this->cache->forgetAll();
 
-        $this->output->printColored(ConsoleOutput::COLOR_GREEN, 'Cache cleared!');
+        $this->output->printColored(ConsoleColor::COLOR_GREEN, 'Cache cleared!');
     }
 }
