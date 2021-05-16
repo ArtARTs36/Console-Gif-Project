@@ -2,6 +2,9 @@
 
 namespace Core\Http;
 
+use Core\Http\Contracts\NotFoundException;
+use Core\Http\Exceptions\RouteNotFound;
+
 class Router
 {
     protected $routes = [];
@@ -30,6 +33,9 @@ class Router
         return $this;
     }
 
+    /**
+     * @throws NotFoundException
+     */
     public function findRoute(Request $request): Route
     {
         $route = @$this->routes[$request->method()][$request->uri()];
@@ -42,6 +48,6 @@ class Router
             return $this->homeRoute;
         }
 
-        throw new \LogicException();
+        throw new RouteNotFound($request);
     }
 }

@@ -23,9 +23,14 @@ class Application
     public function run(Request $request)
     {
         return $this->exceptions->expected(function () use ($request) {
-            $route = $this->router->findRoute($request);
-
-            return $this->container->set(Request::class, $request)->callMethod(...$route->action());
+            return $this->handleRoute($request);
         }, 'web');
+    }
+
+    protected function handleRoute(Request $request)
+    {
+        $route = $this->router->findRoute($request);
+
+        return $this->container->set(Request::class, $request)->callMethod(...$route->action());
     }
 }
