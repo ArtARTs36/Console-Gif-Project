@@ -2,9 +2,13 @@
 
 namespace Tests;
 
+use Core\Cache\Cache;
 use Core\DependencyInjection\ContainerBuilder;
+use Core\DependencyInjection\Contracts\Container;
 use Core\Exception\Contracts\ExceptionHandler;
 use core\Exception\NullExceptionHandler;
+use Core\FileSystem\ArrayFileSystem;
+use Core\FileSystem\Contracts\FileSystem;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
@@ -24,6 +28,10 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
 
         $this
             ->appContainer
+            ->contract(FileSystem::class, ArrayFileSystem::class)
+            ->bind(Cache::class, function (Container $container) {
+                return new Cache('', $container->make(FileSystem::class));
+            })
             ->contract(ExceptionHandler::class, NullExceptionHandler::class);
     }
 
