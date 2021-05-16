@@ -26,4 +26,13 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
             ->appContainer
             ->contract(ExceptionHandler::class, NullExceptionHandler::class);
     }
+
+    protected function getClosedProperty(object $object, string $property)
+    {
+        $getter = function () use ($property) {
+            return $this->$property;
+        };
+
+        return $getter->call($object);
+    }
 }

@@ -9,28 +9,21 @@ class Router
 {
     protected $routes = [];
 
-    /** @var Route|null */
-    protected $homeRoute = null;
+    public function addRoute(string $method, string $uri, string $action): self
+    {
+        $this->routes[$method][$uri] = new Route($method, $uri, $action);
+
+        return $this;
+    }
 
     public function get(string $uri, string $action): self
     {
-        $this->routes['GET'][$uri] = new Route('GET', $uri, $action);
-
-        return $this;
+        return $this->addRoute('GET', $uri, $action);
     }
 
     public function post(string $uri, string $action): self
     {
-        $this->routes['POST'][$uri] = new Route('POST', $uri, $action);
-
-        return $this;
-    }
-
-    public function home(string $action): self
-    {
-        $this->homeRoute = new Route('GET', '/', $action);
-
-        return $this;
+        return $this->addRoute('POST', $uri, $action);
     }
 
     /**
@@ -40,14 +33,10 @@ class Router
     {
         $route = @$this->routes[$request->method()][$request->uri()];
 
-        if ($route) {
-            return $route;
+        if (! $route) {
+            throw new RouteNotFound($request);
         }
 
-        if ($this->homeRoute) {
-            return $this->homeRoute;
-        }
-
-        throw new RouteNotFound($request);
+        return $route;
     }
 }
