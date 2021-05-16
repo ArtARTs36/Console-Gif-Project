@@ -10,8 +10,8 @@ class WebRoutes implements HasRoutes
     public function applyRoutes(Router $router): void
     {
         $router
-            ->post('/submit', 'App\Pages\Submit::handle')
-            ->get('/last', 'App\Pages\LastImages::handle')
-            ->home('App\Pages\Index::handle');
+            ->post('/submit', 'App\Http\Controllers\ImageController::store')
+            ->get('/last', 'App\Http\Controllers\ImageController::last')
+            ->home('App\Http\Controllers\ImageController::index');
     }
 }

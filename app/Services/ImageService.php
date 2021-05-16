@@ -1,20 +1,13 @@
 <?php
 
-namespace App\Pages;
+namespace App\Services;
 
 use App\Http\Requests\SubmitRequest;
 use ArtARTs36\ConsoleGif\Console;
 
-class Submit extends Page
+class ImageService
 {
-    public function handle(SubmitRequest $request): string
-    {
-        return $this->viewer->render('submit', [
-            'image' => '/anim/'. $this->createImage($request),
-        ]);
-    }
-
-    private function createImage(SubmitRequest $request): string
+    public function create(SubmitRequest $request): string
     {
         $file = time() . '.gif';
 
