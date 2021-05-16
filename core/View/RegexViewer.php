@@ -3,6 +3,7 @@
 namespace Core\View;
 
 use Core\FileSystem\Contracts\FileSystem;
+use Core\Lang\Language;
 use Core\View\Contracts\Viewer;
 
 class RegexViewer implements Viewer
@@ -11,21 +12,26 @@ class RegexViewer implements Viewer
 
     protected $files;
 
-    public function __construct(string $dir, FileSystem $files)
+    protected $lang;
+
+    public function __construct(RegexViewerDir $dir, FileSystem $files, Language $language)
     {
         $this->dir = $dir;
         $this->files = $files;
+        $this->lang = $language;
     }
 
     public function render(string $template, array $attributes = []): string
     {
+        $attributes = array_merge($attributes, [
+            'lang' => $this->lang->all(),
+        ]);
+
         $template = $this->files->get($this->path($template));
 
         $template = $this->prepareInclude($template, $attributes);
 
-        if ($attributes) {
-            $template = $this->preparedArrayableAttributes($template, $attributes);
-        }
+        $template = $this->preparedArrayableAttributes($template, $attributes);
 
         //
 

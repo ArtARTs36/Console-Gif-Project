@@ -18,7 +18,7 @@
 
 <main role="main" class="container">
     <div class="my-3 p-3 bg-white rounded box-shadow">
-        <h6 class="border-bottom border-gray pb-2 mb-0">Enter data</h6>
+        <h6 class="border-bottom border-gray pb-2 mb-0">{{ lang_enter_data }}</h6>
 
         <br/>
 

@@ -23,9 +23,11 @@ use Core\FileSystem\Contracts\FileSystem;
 use Core\FileSystem\LocalFileSystem;
 use Core\Http\ArrayRouter;
 use Core\Http\Contracts\Router;
+use Core\Lang\LanguageSelector;
 use Core\Log\Logger;
 use Core\View\Contracts\Viewer;
 use Core\View\RegexViewer;
+use Core\View\RegexViewerDir;
 use Psr\Log\LoggerInterface;
 
 $container = (new ContainerBuilder())
@@ -36,8 +38,8 @@ $container = (new ContainerBuilder())
     ->after(ArrayRouter::class, function (Router $router) {
         (new WebRoutes())->applyRoutes($router);
     })
-    ->bind(Viewer::class, function (Container $container) {
-        return new RegexViewer(__DIR__ . '/../views', $container->make(FileSystem::class));
+    ->bind(RegexViewerDir::class, function () {
+        return new RegexViewerDir(__DIR__ . '/../views');
     })
     ->bind(PushAllSender::class, function (Container $container) {
         /** @var Environment $env */
@@ -48,6 +50,13 @@ $container = (new ContainerBuilder())
     ->bind(Logger::class, function (Container $container) {
         return new Logger(__DIR__ . '/../var/logs', $container->make(FileSystem::class));
     })
+    ->bind(LanguageSelector::class, function (Container $container) {
+        return new LanguageSelector(
+            __DIR__ . '/../lang',
+            'ru',
+            $container->make(FileSystem::class)
+        );
+    })
     ->contract(PusherInterface::class, PushAllSender::class)
     ->contract(ImageRepository::class, CacheImageRepository::class)
     ->contract(ExceptionHandler::class, AppExceptionHandler::class)
@@ -56,7 +65,8 @@ $container = (new ContainerBuilder())
     ->contract(EnvFetcher::class, FileEnvFetcher::class)
     ->contract(LoggerInterface::class, Logger::class)
     ->contract(FileSystem::class, LocalFileSystem::class)
-    ->contract(Router::class, ArrayRouter::class);
+    ->contract(Router::class, ArrayRouter::class)
+    ->contract(Viewer::class, RegexViewer::class);
 
 $container
     ->make(EnvInstaller::class)
