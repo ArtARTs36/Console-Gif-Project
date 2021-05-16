@@ -2,7 +2,6 @@
 
 namespace Tests;
 
-use Core\DependencyInjection\Container;
 use Core\DependencyInjection\ContainerBuilder;
 use Core\Exception\Contracts\ExceptionHandler;
 use core\Exception\NullExceptionHandler;

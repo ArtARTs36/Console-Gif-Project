@@ -1,6 +1,6 @@
 <?php
 
-use Core\DependencyInjection\Container;
+use Core\DependencyInjection\DiContainer;
 use Core\Http\Application;
 use Core\Http\Request;
 

@@ -6,7 +6,7 @@ class ContainerBuilder
 {
     protected $target;
 
-    public function __construct(string $target = Container::class)
+    public function __construct(string $target = DiContainer::class)
     {
         $this->target = $target;
     }

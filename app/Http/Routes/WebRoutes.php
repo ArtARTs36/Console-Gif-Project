@@ -2,7 +2,7 @@
 
 namespace App\Http\Routes;
 
-use Core\Contracts\HasRoutes;
+use Core\Http\Contracts\HasRoutes;
 use Core\Http\Router;
 
 class WebRoutes implements HasRoutes
