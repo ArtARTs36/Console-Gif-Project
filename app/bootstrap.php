@@ -20,8 +20,10 @@ use Core\Environment\EnvInstaller;
 use Core\Environment\File\FileEnvFetcher;
 use Core\Exception\Contracts\ExceptionHandler;
 use Core\Http\Router;
+use Core\Log\Logger;
 use Core\View\Contracts\Viewer;
 use Core\View\RegexViewer;
+use Psr\Log\LoggerInterface;
 
 $container = (new ContainerBuilder())
     ->build()
@@ -40,12 +42,16 @@ $container = (new ContainerBuilder())
 
         return new PushAllSender($env->get('PUSHALL_CHANNEL_ID'), $env->get('PUSHALL_API_KEY'));
     })
+    ->bind(Logger::class, function () {
+        return new Logger(__DIR__ . '/../var/logs');
+    })
     ->contract(PusherInterface::class, PushAllSender::class)
     ->contract(ImageRepository::class, CacheImageRepository::class)
     ->contract(ExceptionHandler::class, AppExceptionHandler::class)
     ->contract(ConsoleKernel::class, Kernel::class)
     ->contract(ConsoleOutput::class, ConsolePrinter::class)
-    ->contract(EnvFetcher::class, FileEnvFetcher::class);
+    ->contract(EnvFetcher::class, FileEnvFetcher::class)
+    ->contract(LoggerInterface::class, Logger::class);
 
 $container
     ->make(EnvInstaller::class)
