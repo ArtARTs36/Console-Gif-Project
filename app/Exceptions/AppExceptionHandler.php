@@ -2,9 +2,9 @@
 
 namespace App\Exceptions;
 
-use App\Support\Viewer;
 use Core\Contracts\ConsoleOutput;
 use Core\Exception\Contracts\ExceptionHandler;
+use Core\View\Contracts\Viewer;
 
 class AppExceptionHandler implements ExceptionHandler
 {

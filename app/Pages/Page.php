@@ -2,7 +2,7 @@
 
 namespace App\Pages;
 
-use App\Support\Viewer;
+use Core\View\Contracts\Viewer;
 
 abstract class Page
 {

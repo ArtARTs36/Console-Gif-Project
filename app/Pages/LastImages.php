@@ -3,7 +3,7 @@
 namespace App\Pages;
 
 use App\Contracts\ImageRepository;
-use App\Support\Viewer;
+use Core\View\Contracts\Viewer;
 
 class LastImages extends Page
 {

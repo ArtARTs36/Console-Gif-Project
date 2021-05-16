@@ -1,19 +1,16 @@
 <?php
 
-namespace App\Support;
+namespace Core\View;
 
-class Viewer
+use Core\View\Contracts\Viewer;
+
+class RegexViewer implements Viewer
 {
     protected $dir;
 
     public function __construct(string $dir)
     {
         $this->dir = $dir;
-    }
-
-    public function path(string $template): string
-    {
-        return $this->dir . DIRECTORY_SEPARATOR . $template . '.tpl';
     }
 
     public function render(string $template, array $attributes = []): string
@@ -31,6 +28,11 @@ class Viewer
         $keys = $this->prepareAttributesKeys($attributes);
 
         return str_replace($keys, array_values($attributes), $template);
+    }
+
+    protected function path(string $template): string
+    {
+        return $this->dir . DIRECTORY_SEPARATOR . $template . '.tpl';
     }
 
     protected function preparedArrayableAttributes(string $content, array &$attributes): string
