@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Ukrainskiy Artem">
 
-    <title>{{ lang.site_title }}</title>
+    <title>{{ lang_site_title }}</title>
 
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/css/offcanvas.css" rel="stylesheet">
