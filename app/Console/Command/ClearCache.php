@@ -2,7 +2,6 @@
 
 namespace App\Console\Command;
 
-use App\Contracts\Command;
 use Core\Cache\Contracts\CacheManager;
 use Core\Console\ConsoleColor;
 use Core\Console\Contracts\ConsoleCommand;
