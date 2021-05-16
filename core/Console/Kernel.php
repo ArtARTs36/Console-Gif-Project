@@ -33,9 +33,9 @@ class Kernel implements ConsoleKernel
 
     public function handle(array $argv)
     {
-        return $this->exceptions->expected(function () use ($argv) {
+        return $this->exceptions->console(function () use ($argv) {
             return $this->run($argv);
-        }, 'console');
+        });
     }
 
     protected function run(array $argv): ?string

@@ -22,9 +22,9 @@ class Application
 
     public function run(Request $request)
     {
-        return $this->exceptions->expected(function () use ($request) {
+        return $this->exceptions->http(function () use ($request) {
             return $this->handleRoute($request);
-        }, 'web');
+        });
     }
 
     protected function handleRoute(Request $request)
