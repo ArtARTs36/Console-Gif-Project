@@ -19,7 +19,7 @@ function composer()
         unlink($dir. 'composer-setup.php');
     }
 
-    shell_exec("cd $dir && php7.3 composer.phar install");
+    shell_exec("cd $dir && php7.3 composer.phar install --no-dev");
 }
 
 composer();
