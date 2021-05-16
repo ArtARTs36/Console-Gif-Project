@@ -1,8 +1,21 @@
 #!/usr/bin/env php
 <?php
 
+use App\Console\Command\ClearCache;
+use App\Console\Command\PrintStat;
+use App\Console\Kernel;
+use Core\Console\ConsolePrinter;
+use Core\Console\Contracts\ConsoleKernel;
+use Core\Console\Contracts\ConsoleOutput;
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$kernel = new \App\Console\Kernel();
+/** @var \Core\DependencyInjection\Contracts\Container $container */
+$container = include __DIR__ . '/../app/bootstrap.php';
 
-$kernel->handle();
+$kernel = $container
+    ->make(ConsoleKernel::class)
+    ->add(ClearCache::class)
+    ->add(PrintStat::class);
+
+$kernel->handle($_SERVER['argv'] ?? []);

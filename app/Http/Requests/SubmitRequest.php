@@ -2,11 +2,20 @@
 
 namespace App\Http\Requests;
 
+use Core\Http\Request;
+
 class SubmitRequest
 {
+    protected $parent;
+
+    public function __construct(Request $request)
+    {
+        $this->parent = $request;
+    }
+
     public function getStrings(): array
     {
-        $values = post()->get('strings', null);
+        $values = $this->parent->get('strings', null);
 
         if (empty($values)) {
             $values[] = 'Hello, World! Hello, World! Hello, World!';
@@ -26,14 +35,14 @@ class SubmitRequest
         };
 
         return [
-            $prepare(post()->get('width', 450)),
-            $prepare(post()->get('height', 450)),
+            $prepare($this->parent->get('width', 450)),
+            $prepare($this->parent->get('height', 450)),
         ];
     }
 
     public function getUser(): string
     {
-        $user = post()->get('user');
+        $user = $this->parent->get('user');
 
         if (empty($user)) {
             return '';

@@ -1,27 +1,41 @@
 <?php
 
-namespace App\Support;
+namespace Core\View;
 
-class Viewer
+use Core\View\Contracts\Viewer;
+
+class RegexViewer implements Viewer
 {
-    public static function render(string $template, array $attributes = []): string
-    {
-        $template = file_get_contents(view_path($template));
+    protected $dir;
 
-        $template = static::prepareInclude($template, $attributes);
+    public function __construct(string $dir)
+    {
+        $this->dir = $dir;
+    }
+
+    public function render(string $template, array $attributes = []): string
+    {
+        $template = file_get_contents($this->path($template));
+
+        $template = $this->prepareInclude($template, $attributes);
 
         if ($attributes) {
-            $template = static::preparedArrayableAttributes($template, $attributes);
+            $template = $this->preparedArrayableAttributes($template, $attributes);
         }
 
         //
 
-        $keys = static::prepareAttributesKeys($attributes);
+        $keys = $this->prepareAttributesKeys($attributes);
 
         return str_replace($keys, array_values($attributes), $template);
     }
 
-    protected static function preparedArrayableAttributes(string $content, array &$attributes): string
+    protected function path(string $template): string
+    {
+        return $this->dir . DIRECTORY_SEPARATOR . $template . '.tpl';
+    }
+
+    protected function preparedArrayableAttributes(string $content, array &$attributes): string
     {
         $arrayable = array_filter($attributes, 'is_array');
 
@@ -40,14 +54,14 @@ class Viewer
         return $content;
     }
 
-    protected static function prepareAttributesKeys(array $attributes): array
+    protected function prepareAttributesKeys(array $attributes): array
     {
         return array_map(function (string $attribute) {
             return "{{ $attribute }}";
         }, array_keys($attributes));
     }
 
-    protected static function prepareInclude(string $content, array $attributes): string
+    protected function prepareInclude(string $content, array $attributes): string
     {
         $matches = [];
 
@@ -61,7 +75,7 @@ class Viewer
 
                 $file = $matches[1][$index];
 
-                $content = str_replace($code, static::render($file, $attributes), $content);
+                $content = str_replace($code, $this->render($file, $attributes), $content);
             }
         }
 

@@ -2,22 +2,24 @@
 
 function linked_anim()
 {
-    @symlink(__DIR__ . '/var/anim',__DIR__ . '/public/anim');
+    @symlink(__DIR__ . '/var/anim', __DIR__ . '/../public/anim');
 }
 
 function composer()
 {
-    if (file_exists('composer.phar')) {
-        @unlink('composer-setup.php');
+    $dir = __DIR__ . '/../';
+
+    if (file_exists($dir . 'composer.phar')) {
+        @unlink($dir . 'composer-setup.php');
     } else {
-        copy('https://getcomposer.org/installer', 'composer-setup.php');
+        copy('https://getcomposer.org/installer', $dir. 'composer-setup.php');
 
-        include 'composer-setup.php';
+        include $dir. 'composer-setup.php';
 
-        unlink('composer-setup.php');
+        unlink($dir. 'composer-setup.php');
     }
 
-    shell_exec('php7.3 composer install');
+    shell_exec("cd $dir && php7.3 composer.phar install");
 }
 
 composer();

@@ -2,29 +2,29 @@
 
 namespace App\Console\Command;
 
-use App\Contracts\Command;
+use Core\Cache\Contracts\CacheManager;
+use Core\Console\ConsoleColor;
+use Core\Console\Contracts\ConsoleCommand;
+use Core\Console\Contracts\ConsoleOutput;
 
-class ClearCache extends Command
+class ClearCache implements ConsoleCommand
 {
+    protected $cache;
+
+    public function __construct(CacheManager $cache)
+    {
+        $this->cache = $cache;
+    }
+
     public static function getSignature(): string
     {
         return 'cache:clear';
     }
 
-    public function process()
+    public function execute(ConsoleOutput $output)
     {
-        $files = scandir(__DIR__ . '/../../../var/cache');
-        $files = array_diff($files, ['.', '..', '.gitignore']);
+        $this->cache->forgetAll();
 
-        foreach ($files as $file) {
-            unlink($this->path($file));
-        }
-
-        $this->printColored(static::COLOR_GREEN, 'Cache cleared!');
-    }
-
-    private function path(string $file): string
-    {
-        return realpath(__DIR__  . '/../../../var/cache/' . $file);
+        $output->printColored(ConsoleColor::COLOR_GREEN, 'Cache cleared!');
     }
 }

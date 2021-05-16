@@ -1,14 +1,30 @@
 <?php
 
-namespace App\Support;
+namespace Core\Cache;
 
-class Cache
+use Core\Cache\Contracts\CacheManager;
+
+class Cache implements CacheManager
 {
     private $dir;
 
     public function __construct(string $dir)
     {
         $this->dir = $dir;
+    }
+
+    public function forgetAll(): void
+    {
+        if (! file_exists($this->dir)) {
+            return;
+        }
+
+        $files = scandir($this->dir);
+        $files = array_diff($files, ['.', '..', '.gitignore']);
+
+        foreach ($files as $file) {
+            unlink($this->path($file));
+        }
     }
 
     public function get(string $key)

@@ -17,14 +17,35 @@
     ],
     "require": {
         "artarts36/console-gif": "dev-master",
-        "ext-json": "*"
+        "ext-json": "*",
+        "psr/container": "^2.0",
+        "phpunit/phpunit": "7.5.*",
+        "artarts36/pushall-sender": "*",
+        "artarts36/env-editor": "*"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "3.5.*"
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Core\\": "core/"
         },
         "files": [
             "app\\Support\\helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "lint": [
+            "./vendor/bin/phpcs --standard=PSR2 app core"
+        ],
+        "test": [
+            "./vendor/phpunit/phpunit/phpunit --configuration phpunit.xml"
         ]
     }
 }
