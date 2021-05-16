@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "51fb08b40e3ecedc70fc098666609898",
+    "content-hash": "e497165286119dfb3059cf112ff7199b",
     "packages": [
         {
             "name": "artarts36/console-gif",
@@ -47,6 +47,46 @@
                 "issues": "https://github.com/ArtARTs36/ConsoleGif/issues"
             },
             "time": "2020-09-24T17:38:58+00:00"
+        },
+        {
+            "name": "artarts36/env-editor",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ArtARTs36/EnvEditor.git",
+                "reference": "9615e9519319b61db7eb20cf1e54e20c2458b120"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ArtARTs36/EnvEditor/zipball/9615e9519319b61db7eb20cf1e54e20c2458b120",
+                "reference": "9615e9519319b61db7eb20cf1e54e20c2458b120",
+                "shasum": ""
+            },
+            "require": {
+                "artarts36/str": "^1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.3",
+                "squizlabs/php_codesniffer": "^3.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ArtARTs36\\EnvEditor\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ArtARTs36",
+                    "email": "temicska99@mail.ru"
+                }
+            ],
+            "description": "Env Editor",
+            "time": "2021-01-14T13:09:20+00:00"
         },
         {
             "name": "artarts36/pushall-sender",

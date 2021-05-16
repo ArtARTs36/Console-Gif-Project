@@ -13,12 +13,17 @@ use Core\Console\Contracts\ConsoleKernel;
 use Core\Console\Contracts\ConsoleOutput;
 use Core\Console\Kernel;
 use Core\DependencyInjection\ContainerBuilder;
+use Core\DependencyInjection\Contracts\Container;
+use Core\Environment\Contracts\EnvFetcher;
+use Core\Environment\Contracts\Environment;
+use Core\Environment\EnvInstaller;
+use Core\Environment\File\FileEnvFetcher;
 use Core\Exception\Contracts\ExceptionHandler;
 use Core\Http\Router;
 use Core\View\Contracts\Viewer;
 use Core\View\RegexViewer;
 
-return (new ContainerBuilder())
+$container = (new ContainerBuilder())
     ->build()
     ->bind(CacheManager::class, function () {
         return new Cache(__DIR__ . '/../var/cache');
@@ -29,11 +34,21 @@ return (new ContainerBuilder())
     ->bind(Viewer::class, function () {
         return new RegexViewer(__DIR__ . '/../views');
     })
-    ->bind(PushAllSender::class, function () {
-        return new PushAllSender(1, 't');
+    ->bind(PushAllSender::class, function (Container $container) {
+        /** @var Environment $env */
+        $env = $container->get(Environment::class);
+
+        return new PushAllSender($env->get('PUSHALL_CHANNEL_ID'), $env->get('PUSHALL_API_KEY'));
     })
     ->contract(PusherInterface::class, PushAllSender::class)
     ->contract(ImageRepository::class, CacheImageRepository::class)
     ->contract(ExceptionHandler::class, AppExceptionHandler::class)
     ->contract(ConsoleKernel::class, Kernel::class)
-    ->contract(ConsoleOutput::class, ConsolePrinter::class);
+    ->contract(ConsoleOutput::class, ConsolePrinter::class)
+    ->contract(EnvFetcher::class, FileEnvFetcher::class);
+
+$container
+    ->make(EnvInstaller::class)
+    ->fromContainer($container, __DIR__ . '/../.env');
+
+return $container;
