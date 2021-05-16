@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Ukrainskiy Artem">
 
-    <title>Console Simulation of Gif Animation</title>
+    <title>{{ lang.site_title }}</title>
 
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/css/offcanvas.css" rel="stylesheet">
@@ -28,7 +28,7 @@
 
         <form method="POST" action="/submit">
             <div class="form-group">
-                <label for="submit-form-width">Width</label>
+                <label for="submit-form-width">{{ lang_width }}</label>
                 <input type="text"
                        class="form-control"
                        id="submit-form-width"
@@ -37,7 +37,7 @@
             </div>
 
             <div class="form-group">
-                <label for="submit-form-width">Height</label>
+                <label for="submit-form-width">{{ lang_height }}</label>
                 <input type="text"
                        class="form-control"
                        id="submit-form-width"
@@ -46,7 +46,7 @@
             </div>
 
             <div class="form-group">
-                <label for="submit-form-user">User (static, left)</label>
+                <label for="submit-form-user">{{ lang_user_static_left }}</label>
                 <input type="text"
                        class="form-control"
                        id="submit-form-user"
@@ -56,7 +56,7 @@
 
             <div id="submit-form-strings">
                 <div class="form-group">
-                    <label for="submit-form-user">String 1</label>
+                    <label for="submit-form-user">{{ lang_string }} 1</label>
                     <input type="text"
                            class="form-control"
                            id="submit-form-user"
@@ -66,10 +66,10 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-success">Submit</button>
-            <button type="button" class="btn btn-info" onclick="addString()">Add String</button>
-            <button type="button" class="btn btn-primary" onclick="repeatLastString()">Repeat Last String</button>
-            <button type="button" class="btn btn-danger" onclick="deleteLastString()">Delete Last String</button>
+            <button type="submit" class="btn btn-success">{{ lang_submit }}</button>
+            <button type="button" class="btn btn-info" onclick="addString()">{{ lang_add_string }}</button>
+            <button type="button" class="btn btn-primary" onclick="repeatLastString()">{{ lang_repeat_last_string }}</button>
+            <button type="button" class="btn btn-danger" onclick="deleteLastString()">{{ lang_delete_last_string }}</button>
 
         </form>
     </div>
@@ -95,7 +95,7 @@
 
         $('#submit-form-strings').append('' +
             '                <div class="form-group">\n' +
-            '                    <label for="submit-form-user">String '+ id +'</label>\n' +
+            '                    <label for="submit-form-user">{{ lang_string }} '+ id +'</label>\n' +
             '                    <input type="text"\n' +
             '                           class="form-control"\n' +
             '                           id="submit-form-user"\n' +

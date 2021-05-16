@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Ukrainskiy Artem">
 
-    <title>Last Images</title>
+    <title>{{ lang.last_images }</title>
 
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/css/offcanvas.css" rel="stylesheet">

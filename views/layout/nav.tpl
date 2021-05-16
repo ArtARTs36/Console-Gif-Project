@@ -7,15 +7,15 @@
     <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/last">Last Images</a>
+                <a class="nav-link" href="/last">{{ lang_last_images }}</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="https://b0o.ru" target="_blank">Cut Link</a>
+                <a class="nav-link" href="https://b0o.ru" target="_blank">{{ lang_cut_link }}</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="http://ukrainsky.su" target="_blank">Author</a>
+                <a class="nav-link" href="http://ukrainsky.su" target="_blank">{{ lang_author }}</a>
             </li>
         </ul>
     </div>
