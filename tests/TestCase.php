@@ -8,6 +8,9 @@ use core\Exception\NullExceptionHandler;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
+    /** @var \Core\Contracts\Container */
+    protected $appContainer;
+
     protected function setUp()
     {
         parent::setUp();
@@ -17,7 +20,8 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
 
     protected function install(): void
     {
-        Container::getInstance()
+        $this
+            ->appContainer
             ->contract(ExceptionHandler::class, NullExceptionHandler::class);
     }
 }

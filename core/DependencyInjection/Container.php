@@ -8,8 +8,7 @@ use Psr\Container\ContainerInterface;
 
 class Container implements ContainerInterface, \Core\Contracts\Container
 {
-    protected static $selfInstance = null;
-
+    /** @var array<string, object> */
     protected $resolvedInstances = [];
 
     /** @var array<string, callable>  */
@@ -20,24 +19,6 @@ class Container implements ContainerInterface, \Core\Contracts\Container
 
     /** @var array<string, string> */
     protected $contracts = [];
-
-    protected function __construct()
-    {
-        //
-    }
-
-    public static function getInstance(): self
-    {
-        if (static::$selfInstance === null) {
-            $instance = new static();
-            $instance->resolvedInstances[static::class] = $instance;
-            $instance->contract(ContainerInterface::class, static::class);
-            $instance->contract(\Core\Contracts\Container::class, static::class);
-            static::$selfInstance = $instance;
-        }
-
-        return static::$selfInstance;
-    }
 
     /**
      * @return object

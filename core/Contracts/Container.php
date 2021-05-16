@@ -21,4 +21,14 @@ interface Container extends ContainerInterface
      * @return mixed
      */
     public function make(string $class);
+
+    /**
+     * @return static
+     */
+    public function contract(string $abstract, string $implementation);
+
+    /**
+     * @return static
+     */
+    public function after(string $class, callable $after);
 }

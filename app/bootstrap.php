@@ -8,11 +8,12 @@ use App\Support\Cache;
 use App\Support\Viewer;
 use ArtARTs36\PushAllSender\Interfaces\PusherInterface;
 use ArtARTs36\PushAllSender\Senders\PushAllSender;
-use Core\DependencyInjection\Container;
+use Core\DependencyInjection\ContainerBuilder;
 use Core\Exception\Contracts\ExceptionHandler;
 use Core\Http\Router;
 
-Container::getInstance()
+return (new ContainerBuilder())
+    ->build()
     ->bind(Cache::class, function () {
         return new Cache(__DIR__ . '/../var/cache');
     })
