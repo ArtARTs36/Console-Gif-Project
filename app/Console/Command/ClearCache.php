@@ -5,7 +5,7 @@ namespace App\Console\Command;
 use App\Contracts\Command;
 use Core\Cache\Contracts\CacheManager;
 use Core\Console\ConsoleColor;
-use Core\Contracts\ConsoleOutput;
+use Core\Console\Contracts\ConsoleOutput;
 
 class ClearCache extends Command
 {

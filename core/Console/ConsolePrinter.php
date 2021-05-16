@@ -2,7 +2,7 @@
 
 namespace Core\Console;
 
-use Core\Contracts\ConsoleOutput;
+use Core\Console\Contracts\ConsoleOutput;
 
 class ConsolePrinter implements ConsoleOutput
 {

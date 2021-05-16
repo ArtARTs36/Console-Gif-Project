@@ -2,7 +2,7 @@
 
 namespace App\Console;
 
-use Core\Contracts\ConsoleOutput;
+use Core\Console\Contracts\ConsoleOutput;
 use Core\Contracts\Container;
 use Core\Exception\HandleExceptions;
 

@@ -2,7 +2,7 @@
 
 namespace App\Contracts;
 
-use Core\Contracts\ConsoleOutput;
+use Core\Console\Contracts\ConsoleOutput;
 
 abstract class Command
 {

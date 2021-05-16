@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Contracts;
+namespace Core\Console\Contracts;
 
 interface ConsoleOutput
 {

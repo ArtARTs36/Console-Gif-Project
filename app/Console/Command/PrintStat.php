@@ -4,8 +4,7 @@ namespace App\Console\Command;
 
 use App\Contracts\Command;
 use App\Contracts\ImageRepository;
-use App\Entities\Image;
-use Core\Contracts\ConsoleOutput;
+use Core\Console\Contracts\ConsoleOutput;
 
 class PrintStat extends Command
 {

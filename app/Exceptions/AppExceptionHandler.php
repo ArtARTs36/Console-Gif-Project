@@ -2,7 +2,7 @@
 
 namespace App\Exceptions;
 
-use Core\Contracts\ConsoleOutput;
+use Core\Console\Contracts\ConsoleOutput;
 use Core\Exception\Contracts\ExceptionHandler;
 use Core\View\Contracts\Viewer;
 

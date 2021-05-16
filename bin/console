@@ -5,7 +5,7 @@ use App\Console\Command\ClearCache;
 use App\Console\Command\PrintStat;
 use App\Console\Kernel;
 use Core\Console\ConsolePrinter;
-use Core\Contracts\ConsoleOutput;
+use Core\Console\Contracts\ConsoleOutput;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
