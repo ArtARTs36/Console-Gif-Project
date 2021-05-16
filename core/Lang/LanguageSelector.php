@@ -24,9 +24,7 @@ class LanguageSelector
     {
         $locale = $this->defaultLocale;
 
-        if ($this->has($request->locale())) {
-            $locale = $request->locale();
-        } elseif ($request->cookie('selected_language') && $this->has($request->cookie('selected_language'))) {
+        if ($request->cookie('selected_language') && $this->has($request->cookie('selected_language'))) {
             $locale = $request->cookie('selected_language');
         }
 
