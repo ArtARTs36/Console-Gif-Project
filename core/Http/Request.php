@@ -2,6 +2,8 @@
 
 namespace Core\Http;
 
+use Core\Http\Contracts\Cookie;
+
 class Request
 {
     protected $method;
@@ -12,9 +14,9 @@ class Request
 
     protected $locale;
 
-    protected $cookies;
+    public $cookies;
 
-    public function __construct(string $method, string $uri, array $variables, string $locale, array $cookies)
+    public function __construct(string $method, string $uri, array $variables, string $locale, Cookie $cookies)
     {
         $this->method = $method;
         $this->uri = $uri;
@@ -30,7 +32,7 @@ class Request
             $_SERVER['REQUEST_URI'],
             array_merge($_GET ?? [], $_POST ?? []),
             $_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? 'ru',
-            $_COOKIE ?? []
+            new GlobalCookie()
         );
     }
 
@@ -63,10 +65,5 @@ class Request
     public function locale(): string
     {
         return $this->locale;
-    }
-
-    public function cookie(string $key)
-    {
-        return $this->cookies[$key] ?? null;
     }
 }
