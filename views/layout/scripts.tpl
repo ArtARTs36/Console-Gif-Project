@@ -23,7 +23,6 @@
     function setCookie(name, value, options) {
         options = {
             path: '/',
-            // при необходимости добавьте другие значения по умолчанию
             ...options
         };
 
@@ -46,7 +45,7 @@
 
     function switchLanguage(lang)
     {
-        setCookie('selected_language', lang, {secure: true, 'max-age': 3600});
+        setCookie('selected_language', lang, {'max-age': 3600 * 24 * 365});
         window.location.reload();
     }
 </script>
