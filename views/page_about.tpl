@@ -34,6 +34,8 @@
             <img src="https://img.shields.io/badge/Code-GitHub-brightgreen">
         </a>
 
+        <img src="https://img.shields.io/github/stars/artarts36/Console-Gif-Project?style=social">
+
         <hr>
 
         {{ lang_page_about_message }}
