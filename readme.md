@@ -2,7 +2,7 @@
 
 ---
 
-![PHP Composer](https://github.com/ArtARTs36/Console-Gif-Project/workflows/Testing/badge.svg?branch=master)
+![PHP Composer](https://github.com/ArtARTs36/Console-Gif-Project/workflows/Deploy/badge.svg?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Посмотреть в действии: http://console-gif.ukrainsky.su

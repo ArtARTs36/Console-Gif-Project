@@ -12,6 +12,7 @@ class WebRoutes implements HasRoutes
         $router
             ->post('/submit', 'App\Http\Controllers\ImageController::store')
             ->get('/last', 'App\Http\Controllers\ImageController::last')
-            ->get('/', 'App\Http\Controllers\ImageController::index');
+            ->get('/', 'App\Http\Controllers\ImageController::index')
+            ->get('/about', 'App\Http\Controllers\PageController::about');
     }
 }

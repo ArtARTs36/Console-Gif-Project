@@ -20,5 +20,5 @@ return [
     'page_about_message' => 'This project is developed on its own micro-framework. ' .
         'Provides the ability to make gif animations that display the console simulation. ',
     'author_name' => 'Ukrainsky Artem',
-    'author_position' => 'Студент 4 курса ВГУ ПММ',
+    'author_position' => '4th year student of VSU PMM',
 ];

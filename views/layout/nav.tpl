@@ -11,6 +11,10 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link" href="/about">{{ lang_nav_about_name }}</a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link" href="https://b0o.ru" target="_blank">{{ lang_cut_link }}</a>
             </li>
 
