@@ -44,4 +44,4 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
-        script: cd ${{ secrets.DIR }} && sh project_update.sh
+        script: cd ${{ secrets.DIR }} && sh scripts/update.sh
