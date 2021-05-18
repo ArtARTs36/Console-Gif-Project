@@ -11,6 +11,10 @@ require_once __DIR__ . '/../vendor/autoload.php';
 /** @var \Core\DependencyInjection\Contracts\Container $container */
 $container = include __DIR__ . '/../app/bootstrap.php';
 
+$container->bind(\Core\Lang\Language::class, function () use ($container) {
+    return $container->make(\Core\Lang\LanguageSelector::class)->getDefault();
+});
+
 $kernel = $container
     ->make(ConsoleKernel::class)
     ->add(ClearCache::class)

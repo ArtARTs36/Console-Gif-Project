@@ -22,6 +22,9 @@ class Kernel implements ConsoleKernel
         $this->container = $container;
         $this->exceptions = $exceptions;
         $this->output = $output;
+        $this->commands = [
+            GeneratorCommand::getSignature() => GeneratorCommand::class,
+        ];
     }
 
     public function add(string $commandClass): self

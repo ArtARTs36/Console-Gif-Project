@@ -31,6 +31,11 @@ class LanguageSelector
         return new Language($locale, $this->load($locale));
     }
 
+    public function getDefault(): Language
+    {
+        return new Language($this->defaultLocale, $this->load($this->defaultLocale));
+    }
+
     public function has(string $locale): bool
     {
         return $this->files->exists($this->path($locale));
