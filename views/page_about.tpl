@@ -36,6 +36,10 @@
 
         <img src="https://img.shields.io/github/stars/artarts36/Console-Gif-Project?style=social">
 
+        <a href="https://github.com/ArtARTs36/Console-Gif-Project/blob/master/docs/openapi.yml">
+            <img src="https://img.shields.io/badge/OpenApi-3.0.0-brightgreen">
+        </a>
+
         <hr>
 
         {{ lang_page_about_message }}

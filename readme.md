@@ -7,6 +7,8 @@
 
 Посмотреть в действии: http://console-gif.ukrainsky.su
 
+Документация OpenAPI: [Swagger](docs/openapi.yml)
+
 ### Установка
 
 ----

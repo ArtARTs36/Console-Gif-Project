@@ -1,0 +1,86 @@
+openapi: 3.0.0
+info:
+  title: 'Console Gif Project'
+  description: 'Console Gif Project'
+  contact:
+    email: temicska99@mail.ru
+  version: 1.0.0
+
+paths:
+  /:
+    get:
+      tags:
+        - Console Gif
+      summary: 'Стартовая страница'
+      description: 'Стартовая страница (с формой для создания анимации)'
+      operationId: StartPage
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            text/html:
+              example: 'html content'
+  /last:
+    get:
+      tags:
+        - Console Gif
+      summary: 'Последние анимации'
+      description: 'Получение списка последних анимаций'
+      operationId: LastImages
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            text/html:
+              example: 'html content'
+  /about:
+    get:
+      tags:
+        - Console Gif
+      summary: 'Страница "О проекте"'
+      description: 'Страница "О проекте"'
+      operationId: AboutPage
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            text/html:
+              example: 'html content'
+  /submit:
+    post:
+      tags:
+        - Console Gif
+      summary: 'Генерация аниманции'
+      description: 'Генерация аниманции'
+      operationId: GenerateAnimation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                width:
+                  type: integer
+                  description: Ширина картики
+                  example: 450
+                height:
+                  type: integer
+                  description: Высота картики
+                  example: 450
+                user:
+                  type: string
+                  description: Пользователь
+                  example: Artem
+                strings:
+                  type: array
+                  items:
+                    type: string
+                    example: Привет
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            text/html:
+              example: 'html content'
+
